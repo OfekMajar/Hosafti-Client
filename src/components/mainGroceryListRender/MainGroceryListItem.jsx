@@ -1,11 +1,14 @@
 import React from "react";
 import styles from "../../pages/singleGroceryList/singleGroceryList.module.css";
 
-function MainGroceryListItem({ product, addItemToList }) {
+function MainGroceryListItem({ product, removeItemFromList, addItemToList }) {
   return (
     <div className={styles.MainGroceryListItem}>
       <div className={styles.productAmountContainer}>
-        <span>
+        <span
+          onClick={() => {
+            removeItemFromList(product.productId._id);
+          }}>
           <i class="fa-solid fa-circle-minus"></i>
         </span>
         <span>{product.amount}</span>

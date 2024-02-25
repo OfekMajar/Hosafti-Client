@@ -33,11 +33,27 @@ export default function GroceryListProvider({ children }) {
       console.log(error);
     }
   };
+
+  const removeFromGroceryList = async (groceryListId, productId) => {
+    try {
+      const res = await axios.post(`${baseUrl}/groceryLists/updateMainList`, {
+        groceryListId,
+        productId,
+        action: "remove",
+      });
+      console.log(res);
+      const data = res.data;
+      console.log(data);
+      getGroceryListFromDb(groceryListId);
+    } catch (error) {
+      console.log(error);
+    }
+  };
   const shared = {
     groceryList,
     setGroceryList,
     getGroceryListFromDb,
-    addGoGroceryList,
+    addGoGroceryList,removeFromGroceryList
   };
   return (
     <GroceryListContext.Provider value={shared}>
