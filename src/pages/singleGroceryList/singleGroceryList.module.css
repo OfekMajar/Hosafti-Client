@@ -1,0 +1,37 @@
+.productSearchBarItemContainer {
+  display: flex;
+  justify-content: space-between;
+  width: 30vw;
+}
+.SingleGroceryListContainer {
+  display: flex;
+}
+/* ^Main list render */
+.mainGroceryListContainor {
+  margin-top: 10px;
+  display: flex;
+  width: 50vw;
+  flex-direction: column;
+  border: 2px solid black;
+  min-height: 80vh;
+  margin: auto;
+  gap: 10px;
+}
+/*^ main list item*/
+.MainGroceryListItem {
+  display: flex;
+  gap: 20px;
+  position: relative;
+  height: 60px;
+  border: 1px solid black;
+  align-items: center;
+}
+.MainGroceryListItem img {
+  width: 60px;
+  height: 60px;
+  position: absolute;
+  left: 0;
+}
+/*& */
+@media (max-width: 450px) {
+}

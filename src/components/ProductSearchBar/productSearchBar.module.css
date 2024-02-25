@@ -1,0 +1,44 @@
+.searchOptionsContainer {
+  display: flex;
+  flex-direction: column;
+  height: 200px;
+  overflow-y: scroll;
+  cursor: pointer;
+  width: max-content;
+  border: 1px solid;
+}
+.productSearchBarItemContainer {
+  height: max-content;
+  display: flex;
+  width: 300px;
+  justify-content: space-around;
+  padding: 10px;
+  border: 1px solid black;
+  align-items: center;
+}
+.productSearchBarImg {
+  height: 50px;
+  width: 50px;
+}
+.searchProductContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 5vh;
+  width: 35vw;
+}
+/*^ custome scroll bar  */
+/* Custom scrollbar for a specific div */
+div.productSearchBarItemContainer::-webkit-scrollbar {
+  width: 12px;
+}
+
+div.productSearchBarItemContainer::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+div.productSearchBarItemContainer::-webkit-scrollbar-thumb {
+  background-color: #888;
+  border-radius: 6px;
+  border: 3px solid #f1f1f1;
+}
