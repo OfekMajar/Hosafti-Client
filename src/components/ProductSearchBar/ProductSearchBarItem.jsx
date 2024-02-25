@@ -5,13 +5,15 @@ import styles from "./productSearchBar.module.css";
 function ProductSearchBarItem({ product }) {
   const { title, img, category, _id } = product;
   const { listId } = useParams();
-  const { addGoGroceryList } = useContext(GroceryListContext);
+  const { addGoGroceryList, getGroceryListFromDb } =
+    useContext(GroceryListContext);
+
+  const addItemToList = async () => {
+    addGoGroceryList(listId, _id);
+    getGroceryListFromDb(listId);
+  };
   return (
-    <div
-      onClick={() => {
-        addGoGroceryList(listId, _id);
-      }}
-      className={styles.productSearchBarItemContainer}>
+    <div onClick={addItemToList} className={styles.productSearchBarItemContainer}>
       <div>
         <i className="fa-solid fa-plus"></i>
       </div>

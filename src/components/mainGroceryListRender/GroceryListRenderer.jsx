@@ -8,33 +8,28 @@ import { baseUrl } from "../../utils/backEndUtils";
 
 function GroceryListRenderer() {
   const { listId } = useParams();
-  const [mainListRender, setMainListRender] = useState([]);
-  const [groceryList, setGroceryList] = useState({});
-  const { addGoGroceryList } = useContext(GroceryListContext);
+  // const [mainListRender, setMainListRender] = useState([]);
+  const { groceryList, addGoGroceryList, getGroceryListFromDb } =
+    useContext(GroceryListContext);
 
   useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const res = await axios.get(
-          `${baseUrl}/groceryLists/groceryList/${listId}`
-        );
-        const data = res.data;
-        console.log(data);
-        console.log(data.mainList);
-        setMainListRender(data.mainList);
-      } catch (error) {
-        console.error("Error fetching data:", error);
-      }
-    };
-
-    fetchData();
+    getGroceryListFromDb(listId);
   }, []);
 
+  const addItemToList = async (_id) => {
+    addGoGroceryList(listId, _id);
+    getGroceryListFromDb(listId);
+  };
+
+  const removeItemFromList = () => {
+    addGoGroceryList(listId, _id);
+    getGroceryListFromDb(listId);
+  };
   return (
     <div className={styles.mainGroceryListContainor}>
       <div>
-        {mainListRender?.map((item) => {
-          return <MainGroceryListItem product={item} />;
+        {groceryList?.mainList?.map((item) => {
+          return <MainGroceryListItem addItemToList={addItemToList} product={item} />;
         })}
       </div>
     </div>

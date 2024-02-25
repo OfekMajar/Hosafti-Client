@@ -1,14 +1,20 @@
 import React from "react";
 import styles from "../../pages/singleGroceryList/singleGroceryList.module.css";
 
-function MainGroceryListItem({ product }) {
-  console.log("ddd");
+function MainGroceryListItem({ product, addItemToList }) {
   return (
     <div className={styles.MainGroceryListItem}>
-      <div>
-        <span>-</span>
+      <div className={styles.productAmountContainer}>
+        <span>
+          <i class="fa-solid fa-circle-minus"></i>
+        </span>
         <span>{product.amount}</span>
-        <span>+</span>
+        <span
+          onClick={() => {
+            addItemToList(product.productId._id);
+          }}>
+          <i class="fa-solid fa-circle-plus"></i>
+        </span>
       </div>
       <div>{product.productId.title}</div>
       <img

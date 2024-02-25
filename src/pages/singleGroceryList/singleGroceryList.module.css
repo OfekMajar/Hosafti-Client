@@ -13,9 +13,10 @@
   width: 50vw;
   flex-direction: column;
   border: 2px solid black;
-  min-height: 80vh;
+  height: 90vh;
   margin: auto;
   gap: 10px;
+  overflow-y: scroll;
 }
 /*^ main list item*/
 .MainGroceryListItem {
@@ -25,6 +26,14 @@
   height: 60px;
   border: 1px solid black;
   align-items: center;
+}
+.productAmountContainer {
+  display: flex;
+  justify-content: space-evenly;
+  width: 60px;
+}
+.productAmountContainer i{
+  cursor: pointer;
 }
 .MainGroceryListItem img {
   width: 60px;
