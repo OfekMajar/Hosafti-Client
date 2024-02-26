@@ -26,20 +26,30 @@
   height: 60px;
   border: 1px solid black;
   align-items: center;
+  padding: 10px;
 }
 .productAmountContainer {
   display: flex;
   justify-content: space-evenly;
   width: 60px;
 }
-.productAmountContainer i{
+.productAmountContainer i {
+  cursor: pointer;
+}
+.MainGroceryListItem input {
   cursor: pointer;
 }
 .MainGroceryListItem img {
   width: 60px;
   height: 60px;
   position: absolute;
-  left: 0;
+  left: 10px;
+}
+/*^ */
+checked item or unchecked .uncheckedItem {
+}
+.checkedItem {
+  text-decoration-line: line-through;
 }
 /*& */
 @media (max-width: 450px) {

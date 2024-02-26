@@ -26,6 +26,7 @@ function CreateGroupForm({ styles, changeHandler, submitHandler, owner }) {
           onChange={changeHandler}
           type="text"
           name="title"
+          required
         />
       </div>
 
@@ -37,6 +38,7 @@ function CreateGroupForm({ styles, changeHandler, submitHandler, owner }) {
           onChange={changeHandler}
           type="text"
           name="purpose"
+          
         />
       </div>
       <button type="sumbit">צור קבוצה</button>

@@ -29,7 +29,7 @@ function MyGroups() {
   };
   useEffect(() => {
     getUserGroups();
-    console.log(user);
+    
   }, [user]);
   return (
     <div>

@@ -11,7 +11,6 @@ export default function GroceryListProvider({ children }) {
     try {
       const res = await axios.get(`${baseUrl}/groceryLists/groceryList/${id}`);
       const data = res.data;
-      console.log(data);
       setGroceryList(data);
     } catch (error) {
       console.log(error);
@@ -19,15 +18,22 @@ export default function GroceryListProvider({ children }) {
   };
   //const { groceryListId, productId, action } = req.body;
   const addGoGroceryList = async (groceryListId, productId) => {
+    const token = localStorage.getItem("hosafti_user_token");
     try {
-      const res = await axios.post(`${baseUrl}/groceryLists/updateMainList`, {
-        groceryListId,
-        productId,
-        action: "add",
-      });
-      console.log(res);
-      const data = res.data;
-      console.log(data);
+      const res = await axios.post(
+        `${baseUrl}/groceryLists/updateMainList`,
+        {
+          groceryListId,
+          productId,
+          action: "add",
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+      console.log("work");
       getGroceryListFromDb(groceryListId);
     } catch (error) {
       console.log(error);
@@ -41,19 +47,44 @@ export default function GroceryListProvider({ children }) {
         productId,
         action: "remove",
       });
-      console.log(res);
-      const data = res.data;
-      console.log(data);
       getGroceryListFromDb(groceryListId);
     } catch (error) {
       console.log(error);
     }
   };
+
+  const deleteFromGroceryList = async (groceryListId, productId) => {
+    try {
+      const res = await axios.post(`${baseUrl}/groceryLists/updateMainList`, {
+        groceryListId,
+        productId,
+      });
+      const data = res.data;
+      getGroceryListFromDb(groceryListId);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const checkOffGroceryItem = async (groceryListId, productId, checked) => {
+    try {
+      const res = await axios.patch(
+        `${baseUrl}/groceryLists/checkOffListItem`,
+        {
+          groceryListId,
+          productId,
+        }
+      );
+      getGroceryListFromDb(groceryListId);
+    } catch (error) {}
+  };
   const shared = {
     groceryList,
     setGroceryList,
     getGroceryListFromDb,
-    addGoGroceryList,removeFromGroceryList
+    addGoGroceryList,
+    removeFromGroceryList,
+    checkOffGroceryItem,
   };
   return (
     <GroceryListContext.Provider value={shared}>

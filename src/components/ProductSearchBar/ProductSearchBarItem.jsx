@@ -13,9 +13,11 @@ function ProductSearchBarItem({ product }) {
     getGroceryListFromDb(listId);
   };
   return (
-    <div onClick={addItemToList} className={styles.productSearchBarItemContainer}>
+    <div
+      onClick={addItemToList}
+      className={styles.productSearchBarItemContainer}>
       <div>
-        <i className="fa-solid fa-plus"></i>
+        <i className="fa-solid fa-circle-plus"></i>
       </div>
       <p>{title}</p>
       <img className={styles.productSearchBarImg} src={img} alt="" />

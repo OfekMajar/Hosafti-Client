@@ -9,8 +9,9 @@ import { baseUrl } from "../../utils/backEndUtils";
 function GroceryListRenderer() {
   const { listId } = useParams();
   // const [mainListRender, setMainListRender] = useState([]);
-  const { groceryList, addGoGroceryList, removeFromGroceryList,getGroceryListFromDb } =
+  const { groceryList, addGoGroceryList,checkOffGroceryItem, removeFromGroceryList,getGroceryListFromDb } =
     useContext(GroceryListContext);
+
 
   useEffect(() => {
     getGroceryListFromDb(listId);
@@ -18,18 +19,19 @@ function GroceryListRenderer() {
 
   const addItemToList = async (_id) => {
     addGoGroceryList(listId, _id);
-    getGroceryListFromDb(listId);
   };
 
   const removeItemFromList = (_id) => {
     removeFromGroceryList(listId, _id);
-    getGroceryListFromDb(listId);
   };
+  const checkListItem=(_id)=>{
+    checkOffGroceryItem(listId,_id)
+  }
   return (
     <div className={styles.mainGroceryListContainor}>
       <div>
         {groceryList?.mainList?.map((item) => {
-          return <MainGroceryListItem removeItemFromList={removeItemFromList} addItemToList={addItemToList} product={item} />;
+          return <MainGroceryListItem checkListItem={checkListItem} removeItemFromList={removeItemFromList} addItemToList={addItemToList} product={item} />;
         })}
       </div>
     </div>

@@ -16,6 +16,7 @@ export default function UserProvider({ children }) {
         );
         const userData = res.data;
         setUser(userData);
+        console.log(token);
       } else {
         console.log("no user history");
       }
@@ -25,7 +26,7 @@ export default function UserProvider({ children }) {
   };
 
   useEffect(async () => {
-    await getUserFromDb();
+    getUserFromDb();
   }, []);
   const logOutHandler = () => {
     localStorage.removeItem("token");
