@@ -28,11 +28,30 @@ export default function UserProvider({ children }) {
   useEffect(async () => {
     getUserFromDb();
   }, []);
+
   const logOutHandler = () => {
-    localStorage.removeItem("token");
+    localStorage.removeItem("hosafti_user_token");
     setUser();
   };
 
-  const shared = { user, setUser, logOutHandler, getUserFromDb };
+  const forgotPasswordHandler = async (email) => {
+    try {
+      const res = await axios.post(`${baseUrl}/users/forgotPassword`, {
+        email,
+      });
+      console.log(res);
+      return true;
+    } catch (error) {
+      console.log(`error`);
+      return false;
+    }
+  };
+  const shared = {
+    user,
+    setUser,
+    logOutHandler,
+    getUserFromDb,
+    forgotPasswordHandler,
+  };
   return <UserContext.Provider value={shared}>{children}</UserContext.Provider>;
 }

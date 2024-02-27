@@ -1,0 +1,4 @@
+:root {
+  --blue: #025dd4;
+  --gradient-color: linear-gradient(to bottom, var(--blue), #6eadbd);
+}

@@ -65,3 +65,13 @@
   align-self: flex-end;
   color: #1976d2;
 }
+.bottonFormBtns {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+.forgotPassword {
+  align-self: flex-start;
+  cursor: pointer;
+  color: #1976d2;
+}

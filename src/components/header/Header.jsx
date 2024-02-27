@@ -1,11 +1,12 @@
 import React, { useContext } from "react";
 import Navbar from "./Navbar";
 import styles from "./header.module.css";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { UserContext } from "../../context/User";
 
 function Header() {
   const { user, logOutHandler } = useContext(UserContext);
+  const nav = useNavigate();
   return (
     <header className={styles.header}>
       {user ? (
@@ -16,8 +17,12 @@ function Header() {
           </button>
         </div>
       ) : (
-        <button className={styles.authNavBtn}>
-          <Link to={"/auth"}>התחבר</Link>
+        <button
+          onClick={() => {
+            nav("/auth");
+          }}
+          className={styles.authNavBtn}>
+          התחבר
         </button>
       )}
 

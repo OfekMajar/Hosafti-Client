@@ -6,6 +6,9 @@
 .SingleGroceryListContainer {
   display: flex;
 }
+.leftContainer {
+  margin: auto;
+}
 /* ^Main list render */
 .mainGroceryListContainor {
   margin-top: 10px;
@@ -13,17 +16,23 @@
   width: 50vw;
   flex-direction: column;
   border: 2px solid black;
-  height: 90vh;
+  height: 80vh;
   margin: auto;
-  gap: 10px;
+  gap: 5px;
   overflow-y: scroll;
+}
+/*^listTitle */
+.listTitle {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 /*^ main list item*/
 .MainGroceryListItem {
   display: flex;
   gap: 20px;
   position: relative;
-  height: 60px;
+  min-height: 60px;
   border: 1px solid black;
   align-items: center;
   padding: 10px;

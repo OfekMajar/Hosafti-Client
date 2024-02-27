@@ -12,6 +12,7 @@ export default function GroceryListProvider({ children }) {
       const res = await axios.get(`${baseUrl}/groceryLists/groceryList/${id}`);
       const data = res.data;
       setGroceryList(data);
+      console.log(data);
     } catch (error) {
       console.log(error);
     }
@@ -41,12 +42,21 @@ export default function GroceryListProvider({ children }) {
   };
 
   const removeFromGroceryList = async (groceryListId, productId) => {
+    const token = localStorage.getItem("hosafti_user_token");
     try {
-      const res = await axios.post(`${baseUrl}/groceryLists/updateMainList`, {
-        groceryListId,
-        productId,
-        action: "remove",
-      });
+      const res = await axios.post(
+        `${baseUrl}/groceryLists/updateMainList`,
+        {
+          groceryListId,
+          productId,
+          action: "remove",
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
       getGroceryListFromDb(groceryListId);
     } catch (error) {
       console.log(error);

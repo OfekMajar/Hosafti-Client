@@ -1,0 +1,11 @@
+.loadingGifContainer {
+  display: flex;
+  justify-self: center;
+  align-items: center;
+}
+.loadingGif {
+  width: 200px;
+  margin: auto;
+
+  margin-top: 20px;
+}

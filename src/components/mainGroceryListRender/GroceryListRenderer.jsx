@@ -9,9 +9,13 @@ import { baseUrl } from "../../utils/backEndUtils";
 function GroceryListRenderer() {
   const { listId } = useParams();
   // const [mainListRender, setMainListRender] = useState([]);
-  const { groceryList, addGoGroceryList,checkOffGroceryItem, removeFromGroceryList,getGroceryListFromDb } =
-    useContext(GroceryListContext);
-
+  const {
+    groceryList,
+    addGoGroceryList,
+    checkOffGroceryItem,
+    removeFromGroceryList,
+    getGroceryListFromDb,
+  } = useContext(GroceryListContext);
 
   useEffect(() => {
     getGroceryListFromDb(listId);
@@ -24,14 +28,24 @@ function GroceryListRenderer() {
   const removeItemFromList = (_id) => {
     removeFromGroceryList(listId, _id);
   };
-  const checkListItem=(_id)=>{
-    checkOffGroceryItem(listId,_id)
-  }
+  const checkListItem = (_id) => {
+    checkOffGroceryItem(listId, _id);
+  };
   return (
-    <div className={styles.mainGroceryListContainor}>
-      <div>
+    <div className={styles.leftContainer}>
+      <div className={styles.listTitle}>
+        <h2>{groceryList.title}</h2>
+      </div>
+      <div className={styles.mainGroceryListContainor}>
         {groceryList?.mainList?.map((item) => {
-          return <MainGroceryListItem checkListItem={checkListItem} removeItemFromList={removeItemFromList} addItemToList={addItemToList} product={item} />;
+          return (
+            <MainGroceryListItem
+              checkListItem={checkListItem}
+              removeItemFromList={removeItemFromList}
+              addItemToList={addItemToList}
+              product={item}
+            />
+          );
         })}
       </div>
     </div>

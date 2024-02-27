@@ -1,6 +1,9 @@
-import React from "react";
+import React, { useContext, useState } from "react";
+import { UserContext } from "../../context/User";
+import { useNavigate } from "react-router-dom";
 
 function Login({ sumbitHandler, changeHandler, toggleMode, styles }) {
+  const nav = useNavigate();
   return (
     <div className={styles.logInModeContainer}>
       <div className={styles.box}>
@@ -35,9 +38,18 @@ function Login({ sumbitHandler, changeHandler, toggleMode, styles }) {
             התחברות
           </button>
         </form>
-        <p className={styles.switchSignUpLogInBtn} onClick={toggleMode}>
-          אין לך חשבון? לחץ כאן
-        </p>
+        <div className={styles.bottonFormBtns}>
+          <p
+            className={styles.forgotPassword}
+            onClick={() => {
+              nav("/auth/forgotpassword");
+            }}>
+            שכחת סיסמא? לחץ כאן
+          </p>
+          <p className={styles.switchSignUpLogInBtn} onClick={toggleMode}>
+            אין לך חשבון? לחץ כאן
+          </p>
+        </div>
       </div>
     </div>
   );
