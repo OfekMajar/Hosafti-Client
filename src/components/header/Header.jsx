@@ -17,16 +17,20 @@ function Header() {
           </button>
         </div>
       ) : (
-        <button
-          onClick={() => {
-            nav("/auth");
-          }}
-          className={styles.authNavBtn}>
-          התחבר
-        </button>
+        <div>
+          <p>אורח</p>
+          <button
+            onClick={() => {
+              nav("/auth");
+            }}
+            className={styles.authNavBtn}>
+            התחבר
+          </button>
+        </div>
       )}
 
       <Navbar styles={styles} />
+      <img className={styles.logoImg} src="" alt="logo img" />
     </header>
   );
 }

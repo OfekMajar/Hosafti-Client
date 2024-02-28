@@ -1,0 +1,101 @@
+.homeContainer {
+  display: flex;
+  justify-content: center;
+}
+.contextContainer {
+  display: flex;
+  height: 80vh;
+  width: 90vw;
+  /* box-shadow: 0px 0px 24px 7px rgba(0, 0, 0, 0.4);
+  -webkit-box-shadow: 0px 0px 24px 7px rgba(0, 0, 0, 0.4);
+  -moz-box-shadow: 0px 0px 24px 7px rgba(0, 0, 0, 0.4); */
+  margin-top: 10px;
+}
+/* ^ right side*/
+.rightSide {
+  display: flex;
+  flex-direction: column;
+  width: 50%;
+}
+.sloganContainer {
+  display: flex;
+}
+.slogan {
+  font-size: 25px;
+  font-weight: 450;
+  margin-top: 70px;
+  margin-right: 40px;
+}
+.whatWeOfferContainer {
+  background: var(--gradient-color);
+  height: 40%;
+  margin-top: 70px;
+  width: 80%;
+  margin-right: 30px;
+  padding: 8px;
+}
+
+.offeringList ul {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.offeringList li {
+  list-style: none;
+}
+.offeringList svg {
+  color: #fff;
+  width: 20px;
+}
+.offeringList span {
+  margin-right: 5px;
+}
+.gettingStartedBtn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
+}
+.gettingStartedBtn button {
+  background-color: var(--loginBlue);
+  border: none;
+  outline: none;
+  border-radius: 5px;
+  width: 150px;
+  height: 40px;
+  font-weight: 700;
+  border-radius: 10px;
+  color: #fff;
+  transition: all 0.1s;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  animation: hoverBtn 2s ease-in-out infinite alternate;
+}
+.gettingStartedBtn button:active {
+  transform: translateY(5px);
+  box-shadow: none;
+  animation: none;
+}
+@keyframes hoverBtn {
+  from {
+    transform: scale(1);
+  }
+  to {
+    transform: scale(1.1);
+  }
+}
+.gettingStartedBtn button:hover {
+  cursor: pointer;
+}
+/*^ left side */
+.leftSide {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 50%;
+}
+.imgContainer {
+  margin-top: 40px;
+}
+.homePageImg {
+  width: 400px;
+}

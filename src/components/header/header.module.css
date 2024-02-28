@@ -2,10 +2,35 @@
 .header {
   display: flex;
   height: 5vh;
+  justify-content: space-between;
+  position: relative;
+  font-size: 20px;
+  padding: 8px;
+  background-color: var(--bgColor);
 }
 .header div {
   display: flex;
   justify-content: space-around;
+  align-items: center;
+}
+/*^  user and btn*/
+.authNavBtn {
+  margin-right: 10px;
+  background-color: var(--loginBlue);
+  color: #ffffff;
+  padding: 5px 10px;
+  border-radius: 5px;
+  box-shadow: -1px 3px 13px -1px rgba(0, 0, 0, 0.16);
+  -webkit-box-shadow: -1px 3px 13px -1px rgba(0, 0, 0, 0.16);
+  -moz-box-shadow: -1px 3px 13px -1px rgba(0, 0, 0, 0.16);
+}
+.authNavBtn :active {
+  box-shadow: none;
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+}
+.authNavBtn:hover {
+  cursor: pointer;
 }
 /*^ navbar */
 .navbar {
@@ -15,4 +40,22 @@
 }
 .navbar li {
   list-style-type: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+a {
+  text-decoration: none;
+}
+.navbar li a {
+  color: var(--loginBlue);
+  font-size: 20px;
+  font-weight: 550;
+  cursor: pointer;
+}
+.navbar li a:hover {
+  transform: scale(1.1);
+}
+/*^ */
+.logoImg {
 }

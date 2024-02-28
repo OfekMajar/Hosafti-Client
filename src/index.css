@@ -1,4 +1,10 @@
 :root {
   --blue: #025dd4;
-  --gradient-color: linear-gradient(to bottom, var(--blue), #6eadbd);
+  --gradient-color: linear-gradient(to bottom, #025dd4, #6eadbd 80%);
+  font-family: sans-serif;
+  --loginBlue: #1976d2;
+  --bgColor: rgba(2, 93, 212, 0.1);
+}
+body {
+  margin: 0;
 }
