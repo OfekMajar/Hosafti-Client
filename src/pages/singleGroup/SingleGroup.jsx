@@ -11,6 +11,7 @@ function SingleGroup() {
   const { user } = useContext(UserContext);
   const { id } = useParams();
   const [userInGroup, setUserInGroup] = useState(false);
+  const [didLinkGenerate, setDidLinkGenerate] = useState(false);
   const checkIfUserIsInGroup = async () => {
     try {
       const res = await axios.patch(
@@ -20,9 +21,7 @@ function SingleGroup() {
       const data = res.data;
       if (res.status == 200) {
         setUserInGroup(true);
-        console.log("works");
-      } else console.log("doesn't work");
-      console.log(res);
+      }
     } catch (error) {
       console.log(error);
     }
@@ -36,12 +35,11 @@ function SingleGroup() {
       console.log(error);
     }
   };
+
   useEffect(() => {
     checkIfUserIsInGroup();
-  }, []);
-  useEffect(() => {
     if (userInGroup) getGroupGroceryLists();
-  }, [userInGroup]);
+  }, [user, userInGroup]);
 
   const linkGenerator = async () => {
     try {
@@ -52,26 +50,36 @@ function SingleGroup() {
         }
       );
       const token = res.data;
-      console.log(token);
       const newLink = `http://localhost:5173/joinGroup/${id}/${token}`;
       navigator.clipboard.writeText(newLink);
+      setDidLinkGenerate(true);
+      setTimeout(() => {
+        setDidLinkGenerate(false);
+      }, 1500);
     } catch (error) {
       console.log(error);
     }
   };
 
   return !userInGroup ? (
-    <div>NOt</div>
+    <div>אין גישה</div>
   ) : (
     <div>
-      <div>
-        <Link to={`/group/${id}/createList`}>create list</Link>
-      </div>
-      <div>
-        <Link to={`/myGroups/group/${id}/historyLists`}>ארכיון</Link>
-      </div>
-      <div>
-        <button onClick={linkGenerator}>צור קישור</button>
+      <div className={styles.buttonsBox}>
+        <Link to={`/group/${id}/createList`}>
+          <button className={styles.newListBtn}>צור רשימה חדשה</button>
+        </Link>
+
+        <Link to={`/myGroups/group/${id}/historyLists`}>
+          <button className={styles.historyListsBtn}>ארכיון</button>
+        </Link>
+
+        <button className={styles.createLinkBtn} onClick={linkGenerator}>
+          שתף את הקבוצה
+          {didLinkGenerate && (
+            <div className={styles.clipBoardMsg}>קישור הועתק ללוח</div>
+          )}
+        </button>
       </div>
       <div>
         {groupLists.map((item) => {

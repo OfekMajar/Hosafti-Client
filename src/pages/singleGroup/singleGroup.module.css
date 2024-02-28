@@ -1,0 +1,29 @@
+.buttonsBox {
+  display: flex;
+  gap: 20px;
+}
+.buttonsBox button {
+  background-color: var(--loginBlue);
+  border: none;
+  outline: none;
+  border-radius: 5px;
+  width: 140px;
+  height: 40px;
+  font-weight: 700;
+  border-radius: 10px;
+  color: #fff;
+  box-shadow: 0 5px 5px rgba(0, 0, 0, 0.352);
+  cursor: pointer;
+}
+.buttonsBox button:active {
+  transform: translateY(5px);
+  box-shadow: none;
+}
+.createLinkBtn {
+  position: relative;
+}
+.clipBoardMsg {
+  color: black;
+  font-size: 12px;
+  
+}

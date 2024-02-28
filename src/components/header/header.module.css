@@ -1,8 +1,8 @@
 /*^ header */
 .header {
   display: flex;
-  height: 5vh;
   justify-content: space-between;
+  height: 100%;
   position: relative;
   font-size: 20px;
   padding: 8px;

@@ -2,7 +2,10 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faSquareShareNodes,
   faHourglassHalf,
+  faClock,
   faListCheck,
+  faShareNodes,
+  faUsersLine,
 } from "@fortawesome/free-solid-svg-icons";
 import React from "react";
 import styles from "./home.module.css";
@@ -15,34 +18,36 @@ function Home() {
           <div className={styles.sloganContainer}>
             <p className={styles.slogan}>
               ברוכים הבאים להוספתי !<br />
-              איתנו תסיימו עם הקניות בפעם אחת
+              <span style={{ whiteSpace: "nowrap" }}>
+                איתנו תסיימו עם הקניות בפעם אחת
+              </span>
             </p>
           </div>
+          <div className={styles.gettingStartedBtn}>
+            <button>לחץ כאן כדאי להתחיל</button>
+          </div>
           <div className={styles.whatWeOfferContainer}>
+            <h3>מה אנחנו מציעים:</h3>
             <div className={styles.offeringList}>
-              <h3>מה אנחנו מציעים:</h3>
               <ul>
                 <li>
-                  <FontAwesomeIcon icon={faSquareShareNodes} size="lg" />
-                  <span> יכולת לשיתוף רשימות בין חברי הקבוצה</span>
+                  <FontAwesomeIcon icon={faUsersLine} />
+                  <p> יכולת לשיתוף רשימות בין חברי הקבוצה</p>
                 </li>
                 <li>
-                  <FontAwesomeIcon icon={faHourglassHalf} size="lg" />
-                  <span>
+                  <FontAwesomeIcon icon={faClock} />
+                  <p>
                     חיסכון בזמן: צפייה בתמונות של המוצרים תחסוך לך בחיפושים
                     מיותרים בסופר
-                  </span>
+                  </p>
                 </li>
                 <li>
                   <FontAwesomeIcon icon={faListCheck} size="lg" />
-                  <span>
+                  <p>
                     ארגון טוב יותר- יצירת רשימות קניות ממוקדות ומסודרות לכל צורך
-                  </span>
+                  </p>
                 </li>
               </ul>
-            </div>
-            <div className={styles.gettingStartedBtn}>
-              <button>לחץ כאן כדאי להתחיל</button>
             </div>
           </div>
         </div>

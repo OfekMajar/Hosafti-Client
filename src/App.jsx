@@ -14,43 +14,49 @@ import UserResetPassword from "./pages/userProfile/UserResetPassword";
 import ForgotPassword from "./pages/auth/ForgotPassword";
 import { useContext } from "react";
 import { UserContext } from "./context/User";
+import Footer from "./components/footer/Footer";
 
 function App() {
-  const {user}=useContext(UserContext)
+  const { user } = useContext(UserContext);
   return (
-    <div>
+    <>
       <BrowserRouter>
-        <Header />
-        
-        <Routes>
+        <div className="app-header">
+          <Header />
+        </div>
+        <main className="app-main">
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/auth" element={<Auth />} />
+            <Route path="/auth/forgotPassword" element={<ForgotPassword />} />
+            <Route path="/myGroups" element={<MyGroups />} />
+            <Route path="/myGroups/createGroup" element={<CreateGroup />} />
+            <Route path="/myGroups/group/:id" element={<SingleGroup />} />
+            <Route
+              path="/myGroups/group/:id/historyLists"
+              element={<GroupHistoryList />}
+            />
+            <Route path="/group/:id/createList" element={<CreateList />} />
+            <Route
+              path="/myGroups/group/:groupId/groceryLists/groceryList/:listId"
+              element={<SingleGroceryList />}
+            />
+            <Route
+              path="/joinGroup/:id/:token"
+              element={<LinkAuthenticator />}
+            />
+            <Route
+              path="/passwordReset/token/:token/id/:id"
+              element={<UserResetPassword />}
+            />
+          </Routes>
+        </main>
 
-        </Routes>
- 
-
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/auth" element={<Auth />} />
-          <Route path="/auth/forgotPassword" element={<ForgotPassword/>} />
-          <Route path="/myGroups" element={<MyGroups />} />
-          <Route path="/myGroups/createGroup" element={<CreateGroup />} />
-          <Route path="/myGroups/group/:id" element={<SingleGroup />} />
-          <Route
-            path="/myGroups/group/:id/historyLists"
-            element={<GroupHistoryList />}
-          />
-          <Route path="/group/:id/createList" element={<CreateList />} />
-          <Route
-            path="/myGroups/group/:groupId/groceryLists/groceryList/:listId"
-            element={<SingleGroceryList />}
-          />
-          <Route path="/joinGroup/:id/:token" element={<LinkAuthenticator />} />
-          <Route
-            path="/passwordReset/token/:token/id/:id"
-            element={<UserResetPassword />}
-          />
-        </Routes>
+        <div className="app-footer">
+          <Footer />
+        </div>
       </BrowserRouter>
-    </div>
+    </>
   );
 }
 

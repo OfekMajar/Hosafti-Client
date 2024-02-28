@@ -3,7 +3,6 @@ import { UserContext } from "../../context/User";
 import styles from "./myGroups.module.css";
 import axios from "axios";
 import { baseUrl } from "../../utils/backEndUtils";
-import Login from "../../components/authentication/Login";
 import MyGroupsCard from "../../components/MyGroupsCard";
 import { Link } from "react-router-dom";
 import loadingImg from "../../assets/LoadingImg.gif";
@@ -14,13 +13,10 @@ function MyGroups() {
   const [showMyGroups, setShowMyGroups] = useState("");
   const getUserGroups = async () => {
     if (user) {
-      console.log("yes user");
       try {
         const res = await axios.get(`${baseUrl}/groups/myGroups/${user.id}`);
         const data = res.data;
-        console.log(data);
         setGroups(data);
-        console.log(res);
         setLoading(false);
       } catch (error) {
         console.log(error);
@@ -32,13 +28,13 @@ function MyGroups() {
     getUserGroups();
   }, [user]);
   return (
-    <div>
+    <div className={styles.myGroupsPageContainer}>
       {!user ? (
         <div>
-          <h1>you must log in first</h1>
+          <h1>עליך להיכנס למשתמש שלך על מנת לראות את הקבוצות שלך</h1>
         </div>
       ) : (
-        <div>
+        <>
           {loading ? (
             <div className={styles.loadingGifContainer}>
               <img
@@ -48,19 +44,19 @@ function MyGroups() {
               />
             </div>
           ) : (
-            <div>
-              <div>
-                <p>
-                  <Link to={"/myGroups/createGroup"}>
-                    לחץ כדי ליצור קבוצה חדשה
-                  </Link>
-                </p>
+            <>
+              <div className={styles.newGroupBtnBox}>
+                <Link to={"/myGroups/createGroup"}>
+                  <button className={styles.newGroupBtn}>
+                    {" "}
+                    לחץ כדי ליצור קבוצה חדשה{" "}
+                  </button>
+                </Link>
               </div>
-              <div>
+              <div className={styles.groupsCardsContainer}>
                 {groups.length > 0 ? (
-                  <div>
+                  <>
                     {groups.map((item, index) => {
-                      console.log(item);
                       return (
                         <MyGroupsCard
                           key={index}
@@ -70,7 +66,7 @@ function MyGroups() {
                         />
                       );
                     })}
-                  </div>
+                  </>
                 ) : (
                   <div>
                     <h1>
@@ -80,9 +76,9 @@ function MyGroups() {
                   </div>
                 )}
               </div>
-            </div>
+            </>
           )}
-        </div>
+        </>
       )}
     </div>
   );

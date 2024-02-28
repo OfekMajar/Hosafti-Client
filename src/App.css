@@ -1,6 +1,10 @@
-body {
-  direction: rtl;
+.app-header {
+  height: 7vh;
+  margin-bottom: 10px;
 }
-a {
-  cursor: pointer;
+.app-main {
+  min-height: 88vh;
+}
+.app-footer {
+  height: 5vh;
 }

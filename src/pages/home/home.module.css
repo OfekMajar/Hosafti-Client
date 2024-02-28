@@ -1,11 +1,13 @@
 .homeContainer {
   display: flex;
   justify-content: center;
+  height: 100%;
 }
 .contextContainer {
   display: flex;
   height: 80vh;
   width: 90vw;
+  padding-top: 30px;
   /* box-shadow: 0px 0px 24px 7px rgba(0, 0, 0, 0.4);
   -webkit-box-shadow: 0px 0px 24px 7px rgba(0, 0, 0, 0.4);
   -moz-box-shadow: 0px 0px 24px 7px rgba(0, 0, 0, 0.4); */
@@ -15,26 +17,34 @@
 .rightSide {
   display: flex;
   flex-direction: column;
+  align-items: center;
   width: 50%;
+  height: 100%;
+  gap: 20px;
 }
 .sloganContainer {
   display: flex;
+  justify-content: center;
+  width: 80%;
 }
 .slogan {
   font-size: 25px;
   font-weight: 450;
-  margin-top: 70px;
-  margin-right: 40px;
+  margin: 0;
+  text-align: center;
+  line-height: 40px;
 }
 .whatWeOfferContainer {
   background: var(--gradient-color);
-  height: 40%;
-  margin-top: 70px;
+  max-height: 100%;
   width: 80%;
-  margin-right: 30px;
   padding: 8px;
+  padding-bottom: 20px;
+  border-radius: 10px;
 }
-
+.whatWeOfferContainer h3 {
+  text-align: center;
+}
 .offeringList ul {
   display: flex;
   flex-direction: column;
@@ -42,19 +52,31 @@
 }
 .offeringList li {
   list-style: none;
+  display: flex;
+  align-items: center;
 }
 .offeringList svg {
   color: #fff;
-  width: 20px;
+  min-width: 40px;
+  font-size: 1.5rem;
 }
-.offeringList span {
-  margin-right: 5px;
+.offeringList p {
+  margin-right: 7px;
+  font-size: 1rem;
 }
 .gettingStartedBtn {
   display: flex;
   justify-content: center;
   align-items: center;
   margin-top: 20px;
+}
+@keyframes hoverBtn {
+  from {
+    transform: scale(1);
+  }
+  to {
+    transform: scale(1.1);
+  }
 }
 .gettingStartedBtn button {
   background-color: var(--loginBlue);
@@ -67,7 +89,7 @@
   border-radius: 10px;
   color: #fff;
   transition: all 0.1s;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.352);
   animation: hoverBtn 2s ease-in-out infinite alternate;
 }
 .gettingStartedBtn button:active {
@@ -75,27 +97,31 @@
   box-shadow: none;
   animation: none;
 }
-@keyframes hoverBtn {
-  from {
-    transform: scale(1);
-  }
-  to {
-    transform: scale(1.1);
-  }
-}
+
 .gettingStartedBtn button:hover {
   cursor: pointer;
 }
 /*^ left side */
 .leftSide {
   display: flex;
-  flex-direction: column;
-  align-items: center;
+  justify-content: center;
   width: 50%;
 }
 .imgContainer {
-  margin-top: 40px;
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-start; /* Align items to the start of the cross axis */
+  overflow: hidden; /* Hide any overflow */
 }
+
 .homePageImg {
-  width: 400px;
+  width: 450px; /* Set a fixed width for the image */
+  object-fit: cover; /* Ensure the image covers the entire container */
+}
+
+@media screen and (max-width: 450px) {
+  .contextContainer {
+    display: flex;
+    flex-direction: column;
+  }
 }

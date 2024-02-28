@@ -1,0 +1,19 @@
+footer {
+  width: 100%;
+  background-color: rgba(2, 93, 212);
+  height: 5vh;
+  display: flex;
+  position: fixed;
+  align-items: center;
+  justify-content: center;
+  bottom: 0;
+}
+
+.contactInfoBox {
+  padding: 10px;
+  display: flex;
+  justify-content: center;
+}
+.contactInfoBox p {
+  margin: 0;
+}
