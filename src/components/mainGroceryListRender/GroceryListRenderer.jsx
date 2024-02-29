@@ -33,20 +33,22 @@ function GroceryListRenderer() {
   };
   return (
     <div className={styles.leftContainer}>
-      <div className={styles.listTitle}>
-        <h2>{groceryList.title}</h2>
-      </div>
-      <div className={styles.mainGroceryListContainor}>
-        {groceryList?.mainList?.map((item) => {
-          return (
-            <MainGroceryListItem
-              checkListItem={checkListItem}
-              removeItemFromList={removeItemFromList}
-              addItemToList={addItemToList}
-              product={item}
-            />
-          );
-        })}
+      <div className={styles.theList}>
+        <div className={styles.listTitle}>
+          <h2>{groceryList.title}</h2>
+        </div>
+        <div className={styles.mainGroceryListContainor}>
+          {groceryList?.mainList?.map((item) => {
+            return (
+              <MainGroceryListItem
+                checkListItem={checkListItem}
+                removeItemFromList={removeItemFromList}
+                addItemToList={addItemToList}
+                product={item}
+              />
+            );
+          })}
+        </div>
       </div>
     </div>
   );

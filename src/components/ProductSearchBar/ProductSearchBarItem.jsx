@@ -1,6 +1,8 @@
 import React, { useContext } from "react";
 import { GroceryListContext } from "../../context/GroceryList";
 import { useParams } from "react-router-dom";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faPlusCircle } from "@fortawesome/free-solid-svg-icons";
 import styles from "./productSearchBar.module.css";
 function ProductSearchBarItem({ product }) {
   const { title, img, category, _id } = product;
@@ -17,7 +19,7 @@ function ProductSearchBarItem({ product }) {
       onClick={addItemToList}
       className={styles.productSearchBarItemContainer}>
       <div>
-        <i className="fa-solid fa-circle-plus"></i>
+        <FontAwesomeIcon icon={faPlusCircle} className={styles.addBtn}/>
       </div>
       <p>{title}</p>
       <img className={styles.productSearchBarImg} src={img} alt="" />

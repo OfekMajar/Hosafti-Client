@@ -81,6 +81,13 @@ function SingleGroup() {
           )}
         </button>
       </div>
+      <section className={styles.orderBySection}>
+        סדר לפי:{" "}
+        <select name="" id="">
+          {" "}
+          <option value="">תאריך</option>
+        </select>
+      </section>
       <div className={styles.listsContainer}>
         {groupLists.map((item) => {
           return <GroupListCard groupList={item} />;

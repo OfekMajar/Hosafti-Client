@@ -5,9 +5,13 @@
 }
 .SingleGroceryListContainer {
   display: flex;
+  justify-content: center;
+  gap: 5vw;
 }
 .leftContainer {
-  margin: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 /* ^Main list render */
 .mainGroceryListContainor {
@@ -37,6 +41,14 @@
   align-items: center;
   padding: 10px;
 }
+.addToList {
+  color: var(--addColor);
+  cursor: pointer;
+}
+.removeFromList {
+  color: var(--deleteColor);
+  cursor: pointer;
+}
 .productAmountContainer {
   display: flex;
   justify-content: space-evenly;
@@ -55,8 +67,7 @@
   left: 10px;
 }
 /*^ */
-checked item or unchecked .uncheckedItem {
-}
+
 .checkedItem {
   text-decoration-line: line-through;
 }

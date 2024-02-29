@@ -1,5 +1,7 @@
 import React from "react";
 import styles from "../../pages/singleGroceryList/singleGroceryList.module.css";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faMinusCircle, faPlusCircle } from "@fortawesome/free-solid-svg-icons";
 
 function MainGroceryListItem({
   product,
@@ -11,7 +13,9 @@ function MainGroceryListItem({
     <div className={styles.MainGroceryListItem}>
       <div>
         <input
-          onClick={()=>{checkListItem(product.productId._id)}}
+          onClick={() => {
+            checkListItem(product.productId._id);
+          }}
           type="checkbox"
           checked={product.checked}
         />
@@ -21,17 +25,20 @@ function MainGroceryListItem({
           onClick={() => {
             removeItemFromList(product.productId._id);
           }}>
-          <i className="fa-solid fa-circle-minus"></i>
+          <FontAwesomeIcon icon={faMinusCircle}  className={styles.removeFromList} />
         </span>
         <span>{product.amount}</span>
         <span
           onClick={() => {
             addItemToList(product.productId._id);
           }}>
-          <i className="fa-solid fa-circle-plus"></i>
+          <FontAwesomeIcon icon={faPlusCircle}  className={styles.addToList}/>
         </span>
       </div>
-      <div className={product.checked?styles.checkedItem:styles.uncheckedItem}>{product.productId.title}</div>
+      <div
+        className={product.checked ? styles.checkedItem : styles.uncheckedItem}>
+        {product.productId.title}
+      </div>
       <img
         src={product.productId.img}
         alt={`${product.productId.title} image`}
@@ -40,4 +47,4 @@ function MainGroceryListItem({
   );
 }
 
-export default MainGroceryListItem;
+export default MainGroceryListItem

@@ -21,11 +21,13 @@ function ProductSearchBar() {
           placeholder="שם המוצר"
         />
       </div>
-      <div className={styles.searchOptionsContainer}>
-        {searchOptions.map((item) => {
-          return <ProductSearchBarItem product={item} />;
-        })}
-      </div>
+      {searchOptions.length > 0 && (
+        <div className={styles.searchOptionsContainer}>
+          {searchOptions.map((item) => {
+            return <ProductSearchBarItem product={item} />;
+          })}
+        </div>
+      )}
     </div>
   );
 }

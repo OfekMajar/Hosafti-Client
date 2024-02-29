@@ -5,6 +5,9 @@
   font-family: "Varela Round", sans-serif;
   --loginBlue: #1976d2;
   --bgColor: rgba(2, 93, 212, 0.1);
+  --addColor: #4caf50;
+  --removeColor: #ffeb3b;
+  --deleteColor: #f44336;
 }
 * {
   box-sizing: border-box;

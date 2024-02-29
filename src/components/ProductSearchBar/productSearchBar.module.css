@@ -28,6 +28,9 @@
   gap: 5vh;
   width: 35vw;
 }
+.addBtn {
+  color: var(--addColor);
+}
 /*^ custome scroll bar  */
 /* Custom scrollbar for a specific div */
 div.productSearchBarItemContainer::-webkit-scrollbar {
