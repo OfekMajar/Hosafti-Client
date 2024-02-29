@@ -24,7 +24,7 @@ function Home() {
             </p>
           </div>
           <div className={styles.gettingStartedBtn}>
-            <button>לחץ כאן כדאי להתחיל</button>
+            <button>לחץ כאן כדי להתחיל</button>
           </div>
           <div className={styles.whatWeOfferContainer}>
             <h3>מה אנחנו מציעים:</h3>

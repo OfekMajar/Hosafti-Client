@@ -2,7 +2,7 @@ import axios from "axios";
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import { baseUrl } from "../utils/backEndUtils";
-
+import styles from "../pages/singleGroup/singleGroup.module.css"
 function groupListCard({ groupList, isHistory }) {
   const navigate = useNavigate();
   const goToList = () => {
@@ -19,15 +19,12 @@ function groupListCard({ groupList, isHistory }) {
           groupListId: groupList._id,
         }
       );
-      console.log(res);
-      const data = res.data;
-      console.log(data);
     } catch (error) {
       console.log(error);
     }
   };
   return (
-    <div>
+    <div className={styles.listCard}>
       <img
         onClick={goToList}
         src="https://static.thenounproject.com/png/166411-200.png"

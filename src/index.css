@@ -24,4 +24,5 @@ a {
 }
 button {
   font-family: "Varela Round", sans-serif;
+  cursor: pointer;
 }

@@ -5,7 +5,7 @@
   height: 100%;
   position: relative;
   font-size: 20px;
-  padding: 8px;
+  padding: 0 8px;
   background-color: var(--bgColor);
 }
 .header div {

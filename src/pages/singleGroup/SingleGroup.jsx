@@ -81,7 +81,7 @@ function SingleGroup() {
           )}
         </button>
       </div>
-      <div>
+      <div className={styles.listsContainer}>
         {groupLists.map((item) => {
           return <GroupListCard groupList={item} />;
         })}

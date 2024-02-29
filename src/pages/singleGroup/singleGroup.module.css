@@ -1,6 +1,8 @@
 .buttonsBox {
   display: flex;
   gap: 20px;
+  margin-bottom: 20px;
+  margin-right: 20px;
 }
 .buttonsBox button {
   background-color: var(--loginBlue);
@@ -14,10 +16,14 @@
   color: #fff;
   box-shadow: 0 5px 5px rgba(0, 0, 0, 0.352);
   cursor: pointer;
+  transition: all 0.5s;
 }
 .buttonsBox button:active {
   transform: translateY(5px);
   box-shadow: none;
+}
+.buttonsBox button:hover {
+  transform: scale(1.1);
 }
 .createLinkBtn {
   position: relative;
@@ -25,5 +31,15 @@
 .clipBoardMsg {
   color: black;
   font-size: 12px;
-  
+}
+.listsContainer {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+.listCard {
+  width: 200px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }

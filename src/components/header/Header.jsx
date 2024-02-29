@@ -3,7 +3,7 @@ import Navbar from "./Navbar";
 import styles from "./header.module.css";
 import { Link, useNavigate } from "react-router-dom";
 import { UserContext } from "../../context/User";
-
+import logoImg from "../../assets/logoImg-removebg-preview.png";
 function Header() {
   const { user, logOutHandler } = useContext(UserContext);
   const nav = useNavigate();
@@ -30,7 +30,7 @@ function Header() {
       )}
 
       <Navbar styles={styles} />
-      <img className={styles.logoImg} src="" alt="logo img" />
+      <img className={styles.logoImg} src={logoImg} alt="logo img" />
     </header>
   );
 }
