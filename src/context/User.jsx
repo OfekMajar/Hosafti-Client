@@ -16,7 +16,6 @@ export default function UserProvider({ children }) {
         );
         const userData = res.data;
         setUser(userData);
-        console.log(token);
       } else {
         console.log("no user history");
       }

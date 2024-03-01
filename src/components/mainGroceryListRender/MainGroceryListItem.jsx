@@ -25,14 +25,17 @@ function MainGroceryListItem({
           onClick={() => {
             removeItemFromList(product.productId._id);
           }}>
-          <FontAwesomeIcon icon={faMinusCircle}  className={styles.removeFromList} />
+          <FontAwesomeIcon
+            icon={faMinusCircle}
+            className={styles.removeFromList}
+          />
         </span>
         <span>{product.amount}</span>
         <span
           onClick={() => {
             addItemToList(product.productId._id);
           }}>
-          <FontAwesomeIcon icon={faPlusCircle}  className={styles.addToList}/>
+          <FontAwesomeIcon icon={faPlusCircle} className={styles.addToList} />
         </span>
       </div>
       <div
@@ -47,4 +50,4 @@ function MainGroceryListItem({
   );
 }
 
-export default MainGroceryListItem
+export default MainGroceryListItem;

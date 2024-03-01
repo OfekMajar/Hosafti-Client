@@ -17,7 +17,8 @@ function Home() {
         <div className={styles.rightSide}>
           <div className={styles.sloganContainer}>
             <p className={styles.slogan}>
-              ברוכים הבאים להוספתי !<br />
+              ברוכים הבאים להוספתי!
+              <br />
               <span style={{ whiteSpace: "nowrap" }}>
                 איתנו תסיימו עם הקניות בפעם אחת
               </span>

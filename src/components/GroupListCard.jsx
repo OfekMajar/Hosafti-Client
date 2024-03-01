@@ -1,9 +1,10 @@
 import axios from "axios";
-import React from "react";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { baseUrl } from "../utils/backEndUtils";
 import styles from "../pages/singleGroup/singleGroup.module.css";
 function groupListCard({ groupList, isHistory }) {
+  const [isCurrCardHistory,setIsCurrCardHistory]=useState(false)
   const navigate = useNavigate();
   const goToList = () => {
     navigate(
@@ -19,11 +20,13 @@ function groupListCard({ groupList, isHistory }) {
           groupListId: groupList._id,
         }
       );
+      setIsCurrCardHistory(true)
     } catch (error) {
       console.log(error);
     }
   };
-  return (
+ return (
+  !isCurrCardHistory && (
     <div className={styles.listCard}>
       <div className={styles.clickHere} onClick={goToList}>
         <img
@@ -35,7 +38,6 @@ function groupListCard({ groupList, isHistory }) {
         <div>
           <span>שם הקבוצה: {groupList.title}</span>
         </div>
-
         <div>
           <span>תאריך: {groupList.date.heDate}</span>
         </div>
@@ -48,7 +50,9 @@ function groupListCard({ groupList, isHistory }) {
         </div>
       )}
     </div>
-  );
+  )
+);
+
 }
 
 export default groupListCard;

@@ -22,9 +22,7 @@ function SingleGroup() {
       if (res.status == 200) {
         setUserInGroup(true);
       }
-    } catch (error) {
-      console.log(error);
-    }
+    } catch (error) {}
   };
   const getGroupGroceryLists = async () => {
     try {

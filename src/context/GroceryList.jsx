@@ -12,7 +12,6 @@ export default function GroceryListProvider({ children }) {
       const res = await axios.get(`${baseUrl}/groceryLists/groceryList/${id}`);
       const data = res.data;
       setGroceryList(data);
-      console.log(data);
     } catch (error) {
       console.log(error);
     }
@@ -34,7 +33,6 @@ export default function GroceryListProvider({ children }) {
           },
         }
       );
-      console.log("work");
       getGroceryListFromDb(groceryListId);
     } catch (error) {
       console.log(error);
@@ -69,7 +67,6 @@ export default function GroceryListProvider({ children }) {
         groceryListId,
         productId,
       });
-      const data = res.data;
       getGroceryListFromDb(groceryListId);
     } catch (error) {
       console.log(error);

@@ -39,8 +39,6 @@ function CreateList() {
         }
       );
       const data = res.data;
-      console.log(res);
-      console.log(data);
       navigate(`/myGroups/group/${id}/groceryLists/groceryList/${data._id}`);
     } catch (error) {
       console.log(error);

@@ -20,7 +20,7 @@
   width: 50vw;
   flex-direction: column;
   border: 2px solid black;
-  height: 80vh;
+  max-height: 75vh;
   margin: auto;
   gap: 5px;
   overflow-y: scroll;
@@ -30,6 +30,10 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  height: 35px;
+}
+.listTitle h2 {
+  margin: 1px;
 }
 /*^ main list item*/
 .MainGroceryListItem {
@@ -73,4 +77,30 @@
 }
 /*& */
 @media (max-width: 450px) {
+  .SingleGroceryListContainer {
+    flex-direction: column;
+    align-items: center;
+  }
+  .MainGroceryListItem {
+    font-size: 15px;
+  }
+  .leftContainer {
+    order: 2; /* Places the list below the search bar */
+  }
+
+  .theList {
+    width: 100%; /* Ensures the list takes up the full width */
+    max-width: 100%; /* Ensures the list takes up the full width */
+  }
+
+  .MainGroceryListItem img {
+    width: 40px;
+    height: 40px;
+    position: absolute;
+    left: 10px;
+  }
+  .mainGroceryListContainor {
+    width: 80vw;
+    height: 55vh;
+  }
 }

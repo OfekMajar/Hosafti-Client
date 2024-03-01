@@ -62,3 +62,23 @@
 .listCard:hover {
   transform: scale(1.1);
 }
+.historyBtn {
+  background-color: var(--loginBlue);
+  border: none;
+  outline: none;
+  width: 100px;
+  height: 22px;
+  border-radius: 10px;
+  color: #fff;
+  box-shadow: 0 5px 5px rgba(0, 0, 0, 0.152);
+  cursor: pointer;
+}
+
+@keyframes fadeAway {
+  from {
+    opacity: 100%;
+  }
+  to {
+    opacity: 0%;
+  }
+}

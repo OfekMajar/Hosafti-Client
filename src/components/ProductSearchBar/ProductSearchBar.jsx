@@ -14,7 +14,7 @@ function ProductSearchBar() {
   };
   return (
     <div className={styles.searchProductContainer}>
-      <div>
+      <div className={styles.searchBar}>
         <input
           type="text"
           onChange={onChangeSearchBarHandler}

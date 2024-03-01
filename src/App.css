@@ -1,9 +1,9 @@
 .app-header {
-  height: 10vh;
-  margin-bottom: 10px;
+  height: 7vh;
 }
 .app-main {
-  min-height: 85vh;
+  min-height: 88vh;
+  padding-top: 10px;
 }
 .app-footer {
   height: 5vh;
