@@ -70,8 +70,84 @@
   justify-content: space-between;
   width: 100%;
 }
+
+.loginErrorText {
+  color: red;
+}
 .forgotPassword {
   align-self: flex-start;
   cursor: pointer;
   color: #1976d2;
+}
+
+@media screen and (max-width: 450px) {
+  /* Adjusted styles for mobile screens */
+  .authContainer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 60vh;
+    margin-top: 10vh;
+  }
+  .logInModeContainer {
+    width: 80%; /* Decreased width for mobile */
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 5px;
+    padding: 10px; /* Decreased padding for mobile */
+  }
+
+  .logInModeContainer form {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: 80%; /* Decreased width for mobile */
+  }
+  .lockBox {
+    width: 25px; /* Decreased width for mobile */
+    height: 25px; /* Decreased height for mobile */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid black;
+    background-color: rgb(65, 172, 202);
+    border-radius: 50%;
+  }
+  .logInModeContainer .box {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    gap: 10px;
+  }
+  .authLableAndInput {
+    width: 100%;
+    background-color: white;
+    display: flex;
+    height: 40px; /* Decreased height for mobile */
+    flex-direction: column;
+  }
+  .authContainer input {
+    height: 40%; /* Decreased height for mobile */
+    font-size: 18px; /* Decreased font size for mobile */
+  }
+  .authSumbitBtn {
+    margin-top: 15px; /* Decreased margin for mobile */
+    font-size: 24px; /* Decreased font size for mobile */
+    text-align: center;
+    background-color: #1976d2;
+    color: #fff;
+    font-weight: 500;
+  }
+  .switchSignUpLogInBtn {
+    cursor: pointer;
+    align-self: flex-end;
+    color: #1976d2;
+    font-size: 14px; /* Decreased font size for mobile */
+  }
 }

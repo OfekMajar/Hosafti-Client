@@ -10,7 +10,8 @@ function ProductSearchBarItem({ product }) {
   const { addGoGroceryList, getGroceryListFromDb } =
     useContext(GroceryListContext);
 
-  const addItemToList = async () => {
+  const addItemToList = async (e) => {
+    e.preventDefault();
     addGoGroceryList(listId, _id);
     getGroceryListFromDb(listId);
   };
@@ -19,9 +20,9 @@ function ProductSearchBarItem({ product }) {
       onClick={addItemToList}
       className={styles.productSearchBarItemContainer}>
       <div>
-        <FontAwesomeIcon icon={faPlusCircle} className={styles.addBtn}/>
+        <FontAwesomeIcon icon={faPlusCircle} className={styles.addBtn} />
       </div>
-      <p>{title}</p>
+      <p className={styles.productName}>{title}</p>
       <img className={styles.productSearchBarImg} src={img} alt="" />
       <p>{category}</p>
     </div>

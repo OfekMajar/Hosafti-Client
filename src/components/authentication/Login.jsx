@@ -2,7 +2,7 @@ import React, { useContext, useState } from "react";
 import { UserContext } from "../../context/User";
 import { useNavigate } from "react-router-dom";
 
-function Login({ sumbitHandler, changeHandler, toggleMode, styles }) {
+function Login({ sumbitHandler, changeHandler, toggleMode, styles,error }) {
   const nav = useNavigate();
   return (
     <div className={styles.logInModeContainer}>
@@ -13,7 +13,7 @@ function Login({ sumbitHandler, changeHandler, toggleMode, styles }) {
         <h1>התחברות</h1>
         <form onSubmit={sumbitHandler}>
           <div className={styles.authLableAndInput}>
-            <label htmlFor="userEmailInput">אימייל:</label>
+            <label htmlFor="userEmailInput">אימייל: {error=="Email or password are incorrect"&& <span className={styles.loginErrorText}>אימייל או סיסמה שגויים</span>}</label>
             <input
               className={styles.authInput}
               onChange={changeHandler}

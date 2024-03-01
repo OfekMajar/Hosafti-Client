@@ -71,7 +71,10 @@
   left: 10px;
 }
 /*^ */
-
+.MainGroceryListItem p {
+  margin: 0;
+  max-width: 45%;
+}
 .checkedItem {
   text-decoration-line: line-through;
 }

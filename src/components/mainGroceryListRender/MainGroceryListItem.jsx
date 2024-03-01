@@ -38,10 +38,10 @@ function MainGroceryListItem({
           <FontAwesomeIcon icon={faPlusCircle} className={styles.addToList} />
         </span>
       </div>
-      <div
+      <p
         className={product.checked ? styles.checkedItem : styles.uncheckedItem}>
         {product.productId.title}
-      </div>
+      </p>
       <img
         src={product.productId.img}
         alt={`${product.productId.title} image`}

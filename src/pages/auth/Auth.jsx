@@ -1,7 +1,6 @@
 import React, { useContext, useState } from "react";
 import { baseUrl } from "../../utils/backEndUtils";
-import laptopStyles from "./authLaptop.module.css";
-import mobileStyles from "./authMobile.module.css";
+import styles from "./authLaptop.module.css";
 import axios from "axios";
 import { UserContext } from "../../context/User";
 import Login from "../../components/authentication/Login";
@@ -12,6 +11,7 @@ import { useNavigate } from "react-router-dom";
 function Auth() {
   const [isLoginMode, setIsLoginMode] = useState(true);
   const [formData, setFormData] = useState({});
+  const [error,setError]=useState()
   const { user, getUserFromDb, setUser } = useContext(UserContext);
   const naviagte = useNavigate();
   //^switching from Login and SignUp
@@ -39,7 +39,14 @@ function Auth() {
       await getUserFromDb();
       naviagte("/");
     } catch (error) {
-      console.log(error.response.data);
+      if (error.response && error.response.status === 401) {
+        // Handle "Email or password are incorrect" error
+        setError("Email or password are incorrect");
+        console.log("Email or password are incorrect");
+      } else {
+        // Handle other errors
+        console.log("An error occurred:", error.message);
+      }
     }
   };
 
@@ -62,9 +69,8 @@ function Auth() {
     }
   };
 
-  //^ checking the window side and styling accordingly
-  const screenSize = getScreenSize();
-  const styles = screenSize === "laptop" ? laptopStyles : mobileStyles;
+
+  
   return (
     <div className={styles.authContainer}>
       {isLoginMode ? (
@@ -73,6 +79,7 @@ function Auth() {
           sumbitHandler={loginHandler}
           changeHandler={changeHandler}
           toggleMode={toggleMode}
+          error={error}
         />
       ) : (
         <SignUp
