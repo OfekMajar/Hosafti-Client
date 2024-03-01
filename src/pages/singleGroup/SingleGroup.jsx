@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from "react";
 import styles from "./singleGroup.module.css";
 import { Link, useFetcher, useParams } from "react-router-dom";
-import { baseUrl } from "../../utils/backEndUtils";
+import { baseInviteUrl, baseUrl } from "../../utils/backEndUtils";
 import GroupListCard from "../../components/GroupListCard";
 import { UserContext } from "../../context/User";
 import axios from "axios";
@@ -18,7 +18,6 @@ function SingleGroup() {
         `${baseUrl}/groups/checkIfUserInGroup/${id}`,
         { userId: user.id }
       );
-      const data = res.data;
       if (res.status == 200) {
         setUserInGroup(true);
       }
@@ -48,7 +47,7 @@ function SingleGroup() {
         }
       );
       const token = res.data;
-      const newLink = `http://localhost:5173/joinGroup/${id}/${token}`;
+      const newLink = `${baseInviteUrl}/joinGroup/${id}/${token}`;
       navigator.clipboard.writeText(newLink);
       setDidLinkGenerate(true);
       setTimeout(() => {
@@ -60,7 +59,7 @@ function SingleGroup() {
   };
 
   return !userInGroup ? (
-    <div>אין גישה</div>
+    <div>אין גישה לקבוצה זו</div>
   ) : (
     <div>
       <div className={styles.buttonsBox}>

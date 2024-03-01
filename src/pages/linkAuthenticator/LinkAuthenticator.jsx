@@ -41,7 +41,8 @@ function LinkAuthenticator() {
         <div>
           <div>
             <button onClick={joinGroup}>
-              תלחץ כאן כדי להצטרף לקבוצה של {group.owner.fullName}
+              תלחץ כאן כדי להצטרף לקבוצה: {group.title}, של{" "}
+              {group.owner.fullName}
             </button>
           </div>
         </div>
