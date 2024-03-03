@@ -20,7 +20,7 @@
   width: 50vw;
   flex-direction: column;
   border: 2px solid black;
-  max-height: 75vh;
+  height: 75vh;
   margin: auto;
   gap: 5px;
   overflow-y: scroll;
