@@ -1,10 +1,10 @@
-import React, { useState } from "react";
-import { format } from "date-fns";
-import heLocale from "date-fns/locale/he"; // Import Hebrew locale
-import CreateListForm from "../../components/CreateListForm";
-import axios from "axios";
-import { baseUrl } from "../../utils/backEndUtils";
-import { useNavigate, useParams } from "react-router-dom";
+import React, { useState } from 'react';
+import { format } from 'date-fns';
+import heLocale from 'date-fns/locale/he'; // Import Hebrew locale
+import CreateListForm from '../../components/CreateListForm';
+import axios from 'axios';
+import { baseUrl } from '../../utils/backEndUtils';
+import { useNavigate, useParams } from 'react-router-dom';
 
 function CreateList() {
   //Todo add validation so he can't make new list
@@ -13,11 +13,11 @@ function CreateList() {
   const [formData, setFormData] = useState({});
 
   const date = new Date();
-  const formattedDate = date.toLocaleString("he-IL", {
-    timeZone: "Asia/Jerusalem",
-    day: "numeric",
-    month: "numeric",
-    year: "numeric",
+  const formattedDate = date.toLocaleString('he-IL', {
+    timeZone: 'Asia/Jerusalem',
+    day: 'numeric',
+    month: 'numeric',
+    year: 'numeric',
   });
   console.log(formattedDate);
 
