@@ -11,6 +11,8 @@ import React from "react";
 import styles from "./home.module.css";
 import homePageImg from "../../assets/homePageImg.jpg";
 function Home() {
+  const gettingStartedHandler=()=>{
+  }
   return (
     <div className={styles.homeContainer}>
       <div className={styles.contextContainer}>
@@ -25,7 +27,7 @@ function Home() {
             </p>
           </div>
           <div className={styles.gettingStartedBtn}>
-            <button>לחץ כאן כדי להתחיל</button>
+            <button onClick={gettingStartedHandler}>לחץ כאן כדי להתחיל</button>
           </div>
           <div className={styles.whatWeOfferContainer}>
             <h3>מה אנחנו מציעים:</h3>

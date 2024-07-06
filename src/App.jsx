@@ -15,6 +15,7 @@ import ForgotPassword from "./pages/auth/ForgotPassword";
 import { useContext } from "react";
 import { UserContext } from "./context/User";
 import Footer from "./components/footer/Footer";
+import ErrorPage from "./pages/error/ErrorPage";
 
 function App() {
   const { user } = useContext(UserContext);
@@ -26,29 +27,67 @@ function App() {
         </div>
         <main className="app-main">
           <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/auth" element={<Auth />} />
-            <Route path="/auth/forgotPassword" element={<ForgotPassword />} />
-            <Route path="/myGroups" element={<MyGroups />} />
-            <Route path="/myGroups/createGroup" element={<CreateGroup />} />
-            <Route path="/myGroups/group/:id" element={<SingleGroup />} />
-            <Route
-              path="/myGroups/group/:id/historyLists"
-              element={<GroupHistoryList />}
-            />
-            <Route path="/group/:id/createList" element={<CreateList />} />
-            <Route
-              path="/myGroups/group/:groupId/groceryLists/groceryList/:listId"
-              element={<SingleGroceryList />}
-            />
-            <Route
-              path="/joinGroup/:id/:token"
-              element={<LinkAuthenticator />}
-            />
-            <Route
-              path="/passwordReset/token/:token/id/:id"
-              element={<UserResetPassword />}
-            />
+            {user ? (
+              <>
+                <Route path="/" element={<Home />} />
+                <Route path="/auth" element={<Auth />} />
+                <Route
+                  path="/auth/forgotPassword"
+                  element={<ForgotPassword />}
+                />
+                <Route path="/myGroups" element={<MyGroups />} />
+                <Route path="/myGroups/createGroup" element={<CreateGroup />} />
+                <Route path="/myGroups/group/:id" element={<SingleGroup />} />
+                <Route
+                  path="/myGroups/group/:id/historyLists"
+                  element={<GroupHistoryList />}
+                />
+                <Route path="/group/:id/createList" element={<CreateList />} />
+                <Route
+                  path="/myGroups/group/:groupId/groceryLists/groceryList/:listId"
+                  element={<SingleGroceryList />}
+                />
+                <Route
+                  path="/joinGroup/:id/:token"
+                  element={<LinkAuthenticator />}
+                />
+                <Route
+                  path="/passwordReset/token/:token/id/:id"
+                  element={<UserResetPassword />}
+                />
+                <Route path="*" element={<ErrorPage />} />
+              </>
+            ) : (
+              <>
+                <Route path="/" element={<Home />} />
+                <Route path="/auth" element={<Auth />} />
+                <Route
+                  path="/auth/forgotPassword"
+                  element={<ForgotPassword />}
+                />
+                <Route path="/myGroups" element={<MyGroups />} />
+                <Route path="/myGroups/createGroup" element={<CreateGroup />} />
+                <Route path="/myGroups/group/:id" element={<SingleGroup />} />
+                <Route
+                  path="/myGroups/group/:id/historyLists"
+                  element={<GroupHistoryList />}
+                />
+                <Route path="/group/:id/createList" element={<CreateList />} />
+                <Route
+                  path="/myGroups/group/:groupId/groceryLists/groceryList/:listId"
+                  element={<SingleGroceryList />}
+                />
+                <Route
+                  path="/joinGroup/:id/:token"
+                  element={<LinkAuthenticator />}
+                />
+                <Route
+                  path="/passwordReset/token/:token/id/:id"
+                  element={<UserResetPassword />}
+                />
+                <Route path="/*" element={<ErrorPage />} />
+              </>
+            )}
           </Routes>
         </main>
 
