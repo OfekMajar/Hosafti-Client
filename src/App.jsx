@@ -16,6 +16,7 @@ import { useContext } from "react";
 import { UserContext } from "./context/User";
 import Footer from "./components/footer/Footer";
 import ErrorPage from "./pages/error/ErrorPage";
+import Auth0Login from "./pages/auth/Auth0Login";
 
 function App() {
   const { user } = useContext(UserContext);
@@ -60,7 +61,7 @@ function App() {
             ) : (
               <>
                 <Route path="/" element={<Home />} />
-                <Route path="/auth" element={<Auth />} />
+                <Route path="/auth" element={<Auth0Login />} />
                 <Route
                   path="/auth/forgotPassword"
                   element={<ForgotPassword />}

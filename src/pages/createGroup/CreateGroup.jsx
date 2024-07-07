@@ -1,5 +1,5 @@
 import axios from "axios";
-import React, { useContext, useState } from "react";
+import { useContext, useState } from "react";
 import { baseUrl } from "../../utils/backEndUtils";
 import CreateGroupForm from "../../components/CreateGroupForm";
 import { UserContext } from "../../context/User";
@@ -33,12 +33,10 @@ function CreateGroup() {
         { title: formData.title, purpose: formData.purpose },
         config
       );
+      
       const data = res.data;
       groupCreated.groupId = data._id;
       setGroupCreated({ ...groupCreated });
-      console.log(groupCreated);
-      console.log(data);
-      console.log(data._id);
     } catch (error) {
       console.log(error);
     }
