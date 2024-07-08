@@ -1,56 +1,42 @@
-import axios from "axios";
-import { createContext, useEffect, useState } from "react";
-import { baseUrl } from "../utils/backEndUtils";
+import axios from 'axios';
+import { createContext, useEffect, useState } from 'react';
+import { baseUrl } from '../utils/backEndUtils';
+import { useAuth0 } from '@auth0/auth0-react';
 
 export const UserContext = createContext({});
 
 export default function UserProvider({ children }) {
-  const [user, setUser] = useState();
+  const { loginWithPopup, user, logout, getAccessTokenSilently } = useAuth0();
   const getUserFromDb = async () => {
     try {
-      const token = localStorage.getItem("hosafti_user_token");
+      let tes = await getAccessTokenSilently();
+      console.log(tes);
+      const token = localStorage.getItem('hosafti_user_token');
       if (token != null) {
         const res = await axios.patch(
           `${baseUrl}/tokenManipulation/tokenDecryptor`,
           { token }
         );
-        const userData = res.data;
-        setUser(userData);
       } else {
-        console.log("no user history");
+        console.log('no user history');
       }
     } catch (error) {
-      console.log("no user history");
+      console.log('no user history');
     }
   };
 
-  useEffect(async () => {
-    getUserFromDb();
-  }, []);
-
+  useEffect(() => {
+    getUserFromDb;
+  }, [user]);
   const logOutHandler = () => {
-    localStorage.removeItem("hosafti_user_token");
-    setUser();
+    localStorage.removeItem('hosafti_user_token');
+    logout();
   };
-
-  const forgotPasswordHandler = async (email) => {
-    try {
-      const res = await axios.post(`${baseUrl}/users/forgotPassword`, {
-        email,
-      });
-      console.log(res);
-      return true;
-    } catch (error) {
-      console.log(`error`);
-      return false;
-    }
-  };
+  console.log(user);
   const shared = {
     user,
-    setUser,
     logOutHandler,
     getUserFromDb,
-    forgotPasswordHandler,
   };
   return <UserContext.Provider value={shared}>{children}</UserContext.Provider>;
 }

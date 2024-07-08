@@ -1,17 +1,17 @@
-import React, { useContext, useState } from "react";
-import { baseUrl } from "../../utils/backEndUtils";
-import styles from "./authLaptop.module.css";
-import axios from "axios";
-import { UserContext } from "../../context/User";
-import Login from "../../components/authentication/Login";
-import SignUp from "../../components/authentication/SignUp";
-import { getScreenSize } from "../../utils/screenSize";
-import { useNavigate } from "react-router-dom";
+import React, { useContext, useState } from 'react';
+import { baseUrl } from '../../utils/backEndUtils';
+import styles from './authLaptop.module.css';
+import axios from 'axios';
+import { UserContext } from '../../context/User';
+import Login from '../../components/authentication/Login';
+import SignUp from '../../components/authentication/SignUp';
+import { getScreenSize } from '../../utils/screenSize';
+import { useNavigate } from 'react-router-dom';
 
 function Auth() {
   const [isLoginMode, setIsLoginMode] = useState(true);
   const [formData, setFormData] = useState({});
-  const [error,setError]=useState()
+  const [error, setError] = useState();
   const { user, getUserFromDb, setUser } = useContext(UserContext);
   const naviagte = useNavigate();
   //^switching from Login and SignUp
@@ -32,20 +32,19 @@ function Auth() {
     try {
       const res = await axios.post(`${baseUrl}/users/login`, {
         email,
-        password,
       });
       const token = res.data;
-      localStorage.setItem("hosafti_user_token", token);
+      localStorage.setItem('hosafti_user_token', token);
       await getUserFromDb();
-      naviagte("/");
+      naviagte('/');
     } catch (error) {
       if (error.response && error.response.status === 401) {
         // Handle "Email or password are incorrect" error
-        setError("Email or password are incorrect");
-        console.log("Email or password are incorrect");
+        setError('Email or password are incorrect');
+        console.log('Email or password are incorrect');
       } else {
         // Handle other errors
-        console.log("An error occurred:", error.message);
+        console.log('An error occurred:', error.message);
       }
     }
   };
@@ -61,16 +60,14 @@ function Auth() {
         fullName,
       });
       const data = res.data;
-      localStorage.setItem("hosafti_user_token", data.token);
+      localStorage.setItem('hosafti_user_token', data.token);
       setUser(data.user);
-      naviagte("/");
+      naviagte('/');
     } catch (error) {
       console.log(error.response.data);
     }
   };
 
-
-  
   return (
     <div className={styles.authContainer}>
       {isLoginMode ? (
