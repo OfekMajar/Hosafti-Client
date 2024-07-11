@@ -9,27 +9,28 @@ export default function UserProvider({ children }) {
   const { user, logout, getAccessTokenSilently } = useAuth0();
   const [globalUser, setGlobalUser] = useState();
   const [token, setToken] = useState('');
+  const [isLoadingUser, setIsLoadingUser] = useState(true);
 
   useEffect(() => {
     const fetchTokenAndUser = async () => {
-      console.log('fetching');
-      try {
-        const accessToken = await getAccessTokenSilently();
-        setToken(accessToken);
-        console.log('toke,', accessToken);
-
-        await getUserFromDb(accessToken);
-        console.log('after user fetch,', globalUser);
-      } catch (error) {
-        console.log('Error fetching access token or user data:', error);
+      if (user && !globalUser) {
+        setIsLoadingUser(true);
+        try {
+          const accessToken = await getAccessTokenSilently();
+          setToken(accessToken);
+          await getUserFromDb(accessToken);
+        } catch (error) {
+          console.log('Error fetching access token or user data:', error);
+        } finally {
+          setIsLoadingUser(false);
+        }
+      } else {
+        setIsLoadingUser(false);
       }
     };
 
-    if (user) {
-      fetchTokenAndUser();
-      console.log(globalUser);
-    }
-  }, [user, getAccessTokenSilently]);
+    fetchTokenAndUser();
+  }, [user, globalUser, getAccessTokenSilently]);
 
   const getUserFromDb = async (accessToken) => {
     console.log('in get user,', accessToken);
@@ -50,13 +51,14 @@ export default function UserProvider({ children }) {
 
   const logOutHandler = () => {
     logout();
-    setGlobalUser()
+    setGlobalUser();
   };
 
   const shared = {
     user,
     globalUser,
     token,
+    isLoadingUser,
     logOutHandler,
     getAccessToken: async () => {
       const accessToken = await getAccessTokenSilently();
