@@ -8,14 +8,14 @@
   padding: 0 8px;
   background-color: var(--bgColor);
 }
-.header div {
+.userSection {
   display: flex;
   justify-content: space-around;
   align-items: center;
+  gap: 8px;
 }
 /*^  user and btn*/
 .authNavBtn {
-  margin-right: 10px;
   background-color: var(--loginBlue);
   color: #ffffff;
   padding: 5px 10px;
@@ -31,6 +31,11 @@
 }
 .authNavBtn:hover {
   cursor: pointer;
+}
+.profileImg{
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
 }
 /*^ navbar */
 .navbar {

@@ -7,15 +7,13 @@ function Auth0Login() {
 
   const checkUser = async () => {
     console.log(user);
-    let t = await getAccessTokenSilently();
-    console.log(t);
   };
 
   const fakeLogin = async () => {
     try {
       const token = await getAccessTokenSilently();
       const res = await axios.post(
-        `${baseUrl}/users/register`,
+        `${baseUrl}/users/login`,
         {},
         {
           headers: {

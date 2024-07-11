@@ -1,20 +1,25 @@
-import React, { useContext, useEffect, useState } from "react";
-import { UserContext } from "../../context/User";
-import styles from "./myGroups.module.css";
-import axios from "axios";
-import { baseUrl } from "../../utils/backEndUtils";
-import MyGroupsCard from "../../components/MyGroupsCard";
-import { Link } from "react-router-dom";
-import loadingImg from "../../assets/LoadingImg.gif";
+import React, { useContext, useEffect, useState } from 'react';
+import { UserContext } from '../../context/User';
+import styles from './myGroups.module.css';
+import axios from 'axios';
+import { baseUrl } from '../../utils/backEndUtils';
+import MyGroupsCard from '../../components/MyGroupsCard';
+import { Link } from 'react-router-dom';
+import loadingImg from '../../assets/LoadingImg.gif';
 function MyGroups() {
-  const { user } = useContext(UserContext);
+  const { user, getAccessToken } = useContext(UserContext);
   const [groups, setGroups] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [showMyGroups, setShowMyGroups] = useState("");
+  const [showMyGroups, setShowMyGroups] = useState('');
   const getUserGroups = async () => {
     if (user) {
+      const token = await getAccessToken();
       try {
-        const res = await axios.get(`${baseUrl}/groups/myGroups/${user.id}`);
+        const res = await axios.get(`${baseUrl}/groups/myGroups/2`, {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        });
         const data = res.data;
         setGroups(data);
         setLoading(false);
@@ -46,10 +51,10 @@ function MyGroups() {
           ) : (
             <>
               <div className={styles.newGroupBtnBox}>
-                <Link to={"/myGroups/createGroup"}>
+                <Link to={'/myGroups/createGroup'}>
                   <button className={styles.newGroupBtn}>
-                    {" "}
-                    לחץ כדי ליצור קבוצה חדשה{" "}
+                    {' '}
+                    לחץ כדי ליצור קבוצה חדשה{' '}
                   </button>
                 </Link>
               </div>
