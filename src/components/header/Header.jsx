@@ -4,7 +4,7 @@ import styles from './header.module.css';
 import { Link, useNavigate } from 'react-router-dom';
 import { UserContext } from '../../context/User';
 import logoImg from '../../assets/logoImg-removebg-preview.png';
-import avatarImg from '../../../public/images/default_avatar.png';
+import defaultAvatar from '../../../public/images/default_avatar.png';
 
 function Header() {
   const { globalUser, logOutHandler } = useContext(UserContext);
@@ -13,7 +13,14 @@ function Header() {
     <header className={styles.header}>
       {globalUser ? (
         <section className={styles.userSection}>
-          <img className={styles.profileImg} src={globalUser.profilePicture} />
+          <img
+            className={styles.profileImg}
+            src={
+              globalUser.profilePicture
+                ? globalUser.profilePicture
+                : defaultAvatar
+            }
+          />
           <button onClick={logOutHandler} className={styles.authNavBtn}>
             התנתק
           </button>
