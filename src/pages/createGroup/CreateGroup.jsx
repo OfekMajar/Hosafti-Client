@@ -6,7 +6,7 @@ import { UserContext } from '../../context/User';
 import styles from './createGroup.module.css';
 
 function CreateGroup() {
-  const { globalUser, authConfig } = useContext(UserContext);
+  const { globalUser, getAccessToken } = useContext(UserContext);
   const [formData, setFormData] = useState({});
   const [groupCreated, setGroupCreated] = useState({ isCreated: false });
 
@@ -20,11 +20,12 @@ function CreateGroup() {
     e.preventDefault();
     groupCreated.isCreated = true;
     setGroupCreated({ ...groupCreated });
+    const token = await getAccessToken();
     try {
       const res = await axios.post(
         `${baseUrl}/groups/createGroup`,
         { title: formData.title, purpose: formData.purpose },
-        authConfig
+        { headers: { Authorization: `bearer ${token}` } }
       );
 
       const data = res.data;
@@ -34,15 +35,17 @@ function CreateGroup() {
       console.log(error);
     }
   };
-
   const linkGenerator = async () => {
     try {
+      const accessToken = await getAccessToken();
       const res = await axios.post(
         `${baseUrl}/tokenManipulation/createLinkToken/${groupCreated.groupId}`,
         {
-          inviter: globalUser.fullName,
-        }
+          inviter: globalUser?.fullName,
+        },
+        { headers: { Authorization: `bearer ${accessToken}` } }
       );
+      
       const token = res.data;
       console.log(token);
       console.log(groupCreated);

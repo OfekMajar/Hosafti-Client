@@ -10,22 +10,15 @@ export default function UserProvider({ children }) {
   const [globalUser, setGlobalUser] = useState();
   const [token, setToken] = useState('');
   const [isLoadingUser, setIsLoadingUser] = useState(true);
-  const [authConfig, setAuthConfig] = useState({});
+
   useEffect(() => {
     const fetchTokenAndUser = async () => {
-      console.log('tes');
-      console.log(user);
       if (user && !globalUser) {
         setIsLoadingUser(true);
         try {
           const accessToken = await getAccessTokenSilently();
           setToken(accessToken);
           await getUserFromDb(accessToken);
-          setAuthConfig({
-            headers: {
-              Authorization: `Bearer ${token}`,
-            },
-          });
         } catch (error) {
           console.log('Error fetching access token or user data:', error);
         } finally {
@@ -40,13 +33,16 @@ export default function UserProvider({ children }) {
   }, [user, globalUser, getAccessTokenSilently]);
 
   const getUserFromDb = async (accessToken) => {
+    console.log('in get user,', accessToken);
+
     try {
       const res = await axios.get(`${baseUrl}/users/personal`, {
         headers: {
           Authorization: `Bearer ${accessToken}`,
         },
       });
-
+      console.log(res);
+      console.log(res.data);
       setGlobalUser(res.data);
     } catch (error) {
       console.log('Error fetching user data from DB:', error);
@@ -62,14 +58,12 @@ export default function UserProvider({ children }) {
     user,
     globalUser,
     token,
-    isLoadingUser,
-    logOutHandler,
+    logOutHandler,isLoadingUser,
     getAccessToken: async () => {
       const accessToken = await getAccessTokenSilently();
       setToken(accessToken);
       return accessToken;
     },
-    authConfig,
   };
 
   return <UserContext.Provider value={shared}>{children}</UserContext.Provider>;

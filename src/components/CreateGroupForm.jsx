@@ -13,7 +13,7 @@ function CreateGroupForm({ styles, changeHandler, submitHandler, owner }) {
         <input
           className={styles.createGroupInput}
           type="text"
-          placeholder={owner.fullName}
+          placeholder={owner?.fullName}
           disabled
         />
       </div>
