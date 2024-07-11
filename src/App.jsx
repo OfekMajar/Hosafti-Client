@@ -19,7 +19,7 @@ import ErrorPage from './pages/error/ErrorPage';
 import Auth0Login from './pages/auth/Auth0Login';
 
 function App() {
-  const { user } = useContext(UserContext);
+  const { globalUser } = useContext(UserContext);
   return (
     <>
       <BrowserRouter>
@@ -28,7 +28,7 @@ function App() {
         </div>
         <main className="app-main">
           <Routes>
-            {user ? (
+            {globalUser ? (
               <>
                 <Route path="/" element={<Home />} />
                 <Route path="/auth" element={<Auth0Login />} />
@@ -62,30 +62,7 @@ function App() {
               <>
                 <Route path="/" element={<Home />} />
                 <Route path="/auth" element={<Auth0Login />} />
-                <Route
-                  path="/auth/forgotPassword"
-                  element={<ForgotPassword />}
-                />
                 <Route path="/myGroups" element={<MyGroups />} />
-                <Route path="/myGroups/createGroup" element={<CreateGroup />} />
-                <Route path="/myGroups/group/:id" element={<SingleGroup />} />
-                <Route
-                  path="/myGroups/group/:id/historyLists"
-                  element={<GroupHistoryList />}
-                />
-                <Route path="/group/:id/createList" element={<CreateList />} />
-                <Route
-                  path="/myGroups/group/:groupId/groceryLists/groceryList/:listId"
-                  element={<SingleGroceryList />}
-                />
-                <Route
-                  path="/joinGroup/:id/:token"
-                  element={<LinkAuthenticator />}
-                />
-                <Route
-                  path="/passwordReset/token/:token/id/:id"
-                  element={<UserResetPassword />}
-                />
                 <Route path="/*" element={<ErrorPage />} />
               </>
             )}

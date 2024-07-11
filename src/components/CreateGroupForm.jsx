@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 /**
  * @param {title: { type: String }}
  * @param {owner: { type: mongoose.Types.ObjectId, ref: "User" },}
@@ -38,7 +38,6 @@ function CreateGroupForm({ styles, changeHandler, submitHandler, owner }) {
           onChange={changeHandler}
           type="text"
           name="purpose"
-          
         />
       </div>
       <button type="sumbit">צור קבוצה</button>

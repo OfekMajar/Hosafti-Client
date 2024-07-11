@@ -53,7 +53,6 @@ function MyGroups() {
               <div className={styles.newGroupBtnBox}>
                 <Link to={'/myGroups/createGroup'}>
                   <button className={styles.newGroupBtn}>
-                    {' '}
                     לחץ כדי ליצור קבוצה חדשה{' '}
                   </button>
                 </Link>

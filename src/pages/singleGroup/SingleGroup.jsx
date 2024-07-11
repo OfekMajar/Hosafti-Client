@@ -1,28 +1,29 @@
-import React, { useContext, useEffect, useState } from "react";
-import styles from "./singleGroup.module.css";
-import { Link, useFetcher, useParams } from "react-router-dom";
-import { baseInviteUrl, baseUrl } from "../../utils/backEndUtils";
-import GroupListCard from "../../components/GroupListCard";
-import { UserContext } from "../../context/User";
-import axios from "axios";
-import loadingImg from "../../assets/LoadingImg.gif";
+import React, { useContext, useEffect, useState } from 'react';
+import styles from './singleGroup.module.css';
+import { Link, useFetcher, useParams } from 'react-router-dom';
+import { baseInviteUrl, baseUrl } from '../../utils/backEndUtils';
+import GroupListCard from '../../components/GroupListCard';
+import { UserContext } from '../../context/User';
+import axios from 'axios';
+import loadingImg from '../../assets/LoadingImg.gif';
 
 function SingleGroup() {
   //ToDO add valdition to check if online user has access to this group
   const [groupLists, setGroupLists] = useState([]);
-  const { user } = useContext(UserContext);
+  const { globalUser, getAccessToken } = useContext(UserContext);
   const { id } = useParams();
   const [userInGroup, setUserInGroup] = useState(true);
   const [didLinkGenerate, setDidLinkGenerate] = useState(false);
   const [loading, setLoading] = useState(true);
 
   const checkIfUserIsInGroup = async () => {
+    setLoading(true);
     try {
-      const res = await axios.patch(
+      const accessToken = await getAccessToken();
+      const res = await axios.get(
         `${baseUrl}/groups/checkIfUserInGroup/${id}`,
-        { userId: user.id }
+        { headers: { Authorization: `Bearer ${accessToken}` } }
       );
-      setLoading(true);
       if (res.status == 200) {
         setUserInGroup(true);
       }
@@ -33,8 +34,11 @@ function SingleGroup() {
     }
   };
   const getGroupGroceryLists = async () => {
+    const accessToken = await getAccessToken();
     try {
-      const res = await axios.get(`${baseUrl}/groceryLists/group/${id}`);
+      const res = await axios.get(`${baseUrl}/groceryLists/group/${id}`, {
+        headers: { Authorization: `Bearer ${accessToken}` },
+      });
       const data = res.data;
       setGroupLists(data);
     } catch (error) {
@@ -43,17 +47,19 @@ function SingleGroup() {
   };
 
   useEffect(() => {
-    if (user) checkIfUserIsInGroup();
+    if (globalUser) checkIfUserIsInGroup();
     if (userInGroup) getGroupGroceryLists();
-  }, [user, userInGroup]);
+  }, [globalUser, userInGroup]);
 
   const linkGenerator = async () => {
     try {
+      const accessToken = await getAccessToken();
       const res = await axios.post(
         `${baseUrl}/tokenManipulation/createLinkToken/${id}`,
         {
-          inviter: user.fullName,
-        }
+          inviter: globalUser?.fullName,
+        },
+        { headers: { Authorization: `bearer ${accessToken}` } }
       );
       const token = res.data;
       const newLink = `${baseInviteUrl}/joinGroup/${id}/${token}`;
@@ -92,7 +98,7 @@ function SingleGroup() {
         </button>
       </div>
       <section className={styles.orderBySection}>
-        סדר לפי:{" "}
+        סדר לפי:{' '}
         <select name="" id="">
           <option value="">תאריך</option>
         </select>

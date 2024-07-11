@@ -8,7 +8,7 @@ export const UserContext = createContext({});
 export default function UserProvider({ children }) {
   const { user, logout, getAccessTokenSilently } = useAuth0();
   const [globalUser, setGlobalUser] = useState();
-  const [token, setToken] = useState('');
+  const [accessToken, setAccessToken] = useState('');
   const [isLoadingUser, setIsLoadingUser] = useState(true);
 
   useEffect(() => {
@@ -16,9 +16,9 @@ export default function UserProvider({ children }) {
       if (user && !globalUser) {
         setIsLoadingUser(true);
         try {
-          const accessToken = await getAccessTokenSilently();
-          setToken(accessToken);
-          await getUserFromDb(accessToken);
+          const token = await getAccessTokenSilently();
+          setAccessToken(token);
+          await getUserFromDb(token);
         } catch (error) {
           console.log('Error fetching access token or user data:', error);
         } finally {
@@ -32,17 +32,13 @@ export default function UserProvider({ children }) {
     fetchTokenAndUser();
   }, [user, globalUser, getAccessTokenSilently]);
 
-  const getUserFromDb = async (accessToken) => {
-    console.log('in get user,', accessToken);
-
+  const getUserFromDb = async (token) => {
     try {
       const res = await axios.get(`${baseUrl}/users/personal`, {
         headers: {
-          Authorization: `Bearer ${accessToken}`,
+          Authorization: `Bearer ${token}`,
         },
       });
-      console.log(res);
-      console.log(res.data);
       setGlobalUser(res.data);
     } catch (error) {
       console.log('Error fetching user data from DB:', error);
@@ -52,17 +48,19 @@ export default function UserProvider({ children }) {
   const logOutHandler = () => {
     logout();
     setGlobalUser();
+    setAccessToken('')
   };
 
   const shared = {
     user,
     globalUser,
-    token,
-    logOutHandler,isLoadingUser,
+    accessToken,
+    logOutHandler,
+    isLoadingUser,
     getAccessToken: async () => {
-      const accessToken = await getAccessTokenSilently();
-      setToken(accessToken);
-      return accessToken;
+      const token = await getAccessTokenSilently();
+      setAccessToken(token);
+      return token;
     },
   };
 

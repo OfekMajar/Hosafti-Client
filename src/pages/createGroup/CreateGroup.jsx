@@ -9,7 +9,6 @@ function CreateGroup() {
   const { globalUser, getAccessToken } = useContext(UserContext);
   const [formData, setFormData] = useState({});
   const [groupCreated, setGroupCreated] = useState({ isCreated: false });
-
   const changeHandler = (e) => {
     formData[e.target.name] = e.target.value;
     setFormData({ ...formData });
@@ -21,6 +20,7 @@ function CreateGroup() {
     groupCreated.isCreated = true;
     setGroupCreated({ ...groupCreated });
     const token = await getAccessToken();
+    console.log(token);
     try {
       const res = await axios.post(
         `${baseUrl}/groups/createGroup`,
@@ -32,7 +32,7 @@ function CreateGroup() {
       groupCreated.groupId = data._id;
       setGroupCreated({ ...groupCreated });
     } catch (error) {
-      console.log(error);
+      console.error(error);
     }
   };
   const linkGenerator = async () => {
@@ -45,10 +45,8 @@ function CreateGroup() {
         },
         { headers: { Authorization: `bearer ${accessToken}` } }
       );
-      
+
       const token = res.data;
-      console.log(token);
-      console.log(groupCreated);
       const newLink = `http://localhost:5173/joinGroup/${groupCreated.groupId}/${token}`;
       navigator.clipboard.writeText(newLink);
     } catch (error) {
