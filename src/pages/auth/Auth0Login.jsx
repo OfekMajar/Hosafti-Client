@@ -1,17 +1,19 @@
 import { useAuth0 } from '@auth0/auth0-react';
 import axios from 'axios';
 import { baseUrl } from '../../utils/backEndUtils';
+import { useEffect } from 'react';
 
 function Auth0Login() {
-  const { loginWithPopup, user, logout, getAccessTokenSilently } = useAuth0();
-
-  const checkUser = async () => {
-    console.log(user);
-  };
-
-  const fakeLogin = async () => {
+  const {
+    loginWithPopup,
+    getAccessTokenSilently,
+    user,
+    logout,
+    isAuthenticated,
+  } = useAuth0();
+  const registerUser = async () => {
     try {
-      const token = await getAccessTokenSilently();
+      let token = await getAccessTokenSilently();
       const res = await axios.post(
         `${baseUrl}/users/login`,
         {},
@@ -21,18 +23,21 @@ function Auth0Login() {
           },
         }
       );
-      console.log(res.data);
+      console.log('User registered:', res.data);
     } catch (error) {
-      console.error('Error during fake login:', error);
+      console.error('Error during user registration:', error);
     }
   };
 
+  useEffect(() => {
+    if (isAuthenticated && user) {
+      registerUser();
+    }
+  }, [isAuthenticated, user]);
   return (
     <div>
       <button onClick={loginWithPopup}>log in</button>
       <button onClick={logout}>logout</button>
-      <button onClick={checkUser}>check user info</button>
-      <button onClick={fakeLogin}>fake login</button>
     </div>
   );
 }

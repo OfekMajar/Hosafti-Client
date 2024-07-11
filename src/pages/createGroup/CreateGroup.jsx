@@ -1,12 +1,12 @@
-import axios from "axios";
-import { useContext, useState } from "react";
-import { baseUrl } from "../../utils/backEndUtils";
-import CreateGroupForm from "../../components/CreateGroupForm";
-import { UserContext } from "../../context/User";
-import styles from "./createGroup.module.css";
+import axios from 'axios';
+import { useContext, useState } from 'react';
+import { baseUrl } from '../../utils/backEndUtils';
+import CreateGroupForm from '../../components/CreateGroupForm';
+import { UserContext } from '../../context/User';
+import styles from './createGroup.module.css';
 
 function CreateGroup() {
-  const { user } = useContext(UserContext);
+  const { globalUser, authConfig } = useContext(UserContext);
   const [formData, setFormData] = useState({});
   const [groupCreated, setGroupCreated] = useState({ isCreated: false });
 
@@ -21,19 +21,12 @@ function CreateGroup() {
     groupCreated.isCreated = true;
     setGroupCreated({ ...groupCreated });
     try {
-      const token = localStorage.getItem("hosafti_user_token");
-      const config = {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      };
-
       const res = await axios.post(
         `${baseUrl}/groups/createGroup`,
         { title: formData.title, purpose: formData.purpose },
-        config
+        authConfig
       );
-      
+
       const data = res.data;
       groupCreated.groupId = data._id;
       setGroupCreated({ ...groupCreated });
@@ -47,7 +40,7 @@ function CreateGroup() {
       const res = await axios.post(
         `${baseUrl}/tokenManipulation/createLinkToken/${groupCreated.groupId}`,
         {
-          inviter: user.fullName,
+          inviter: globalUser.fullName,
         }
       );
       const token = res.data;
@@ -71,7 +64,7 @@ function CreateGroup() {
       ) : (
         <CreateGroupForm
           styles={styles}
-          owner={user}
+          owner={globalUser}
           changeHandler={changeHandler}
           submitHandler={submitHandler}
         />
