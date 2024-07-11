@@ -1,8 +1,8 @@
-@import url("https://fonts.googleapis.com/css2?family=Varela+Round&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Varela+Round&display=swap');
 :root {
   --blue: #025dd4;
   --gradient-color: linear-gradient(to bottom, #025dd4, #6eadbd 80%);
-  font-family: "Varela Round", sans-serif;
+  font-family: 'Varela Round', sans-serif;
   --loginBlue: #1976d2;
   --bgColor: rgba(2, 93, 212, 0.1);
   --addColor: #4caf50;
@@ -26,6 +26,6 @@ a {
   cursor: pointer;
 }
 button {
-  font-family: "Varela Round", sans-serif;
+  font-family: 'Varela Round', sans-serif;
   cursor: pointer;
 }

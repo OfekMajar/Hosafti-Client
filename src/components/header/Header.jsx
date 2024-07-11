@@ -1,32 +1,42 @@
-import React, { useContext } from "react";
-import Navbar from "./Navbar";
-import styles from "./header.module.css";
-import { Link, useNavigate } from "react-router-dom";
-import { UserContext } from "../../context/User";
-import logoImg from "../../assets/logoImg-removebg-preview.png";
+import React, { useContext } from 'react';
+import Navbar from './Navbar';
+import styles from './header.module.css';
+import { Link, useNavigate } from 'react-router-dom';
+import { UserContext } from '../../context/User';
+import logoImg from '../../assets/logoImg-removebg-preview.png';
+import defaultAvatar from '../../../public/images/default_avatar.png';
+
 function Header() {
-  const { user, logOutHandler } = useContext(UserContext);
+  const { globalUser, logOutHandler } = useContext(UserContext);
   const nav = useNavigate();
   return (
     <header className={styles.header}>
-      {user ? (
-        <div>
-          <p>{user.fullName}</p>
+      {globalUser ? (
+        <section className={styles.userSection}>
+          <img
+            className={styles.profileImg}
+            src={
+              globalUser.profilePicture
+                ? globalUser.profilePicture
+                : defaultAvatar
+            }
+          />
           <button onClick={logOutHandler} className={styles.authNavBtn}>
             התנתק
           </button>
-        </div>
+        </section>
       ) : (
-        <div>
+        <section className={styles.userSection}>
           <p>אורח</p>
           <button
             onClick={() => {
-              nav("/auth");
+              nav('/auth');
             }}
-            className={styles.authNavBtn}>
+            className={styles.authNavBtn}
+          >
             התחבר
           </button>
-        </div>
+        </section>
       )}
 
       <Navbar styles={styles} />
