@@ -58,8 +58,7 @@ div.productSearchBarItemContainer::-webkit-scrollbar-thumb {
   .searchOptionsContainer {
     max-height: 20vh;
   }
-  .searchProductContainer{
+  .searchProductContainer {
     max-height: 20vh;
-
   }
 }
