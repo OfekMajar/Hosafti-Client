@@ -1,10 +1,10 @@
-import React, { useContext, useEffect, useState } from "react";
-import styles from "../../pages/singleGroceryList/singleGroceryList.module.css";
-import MainGroceryListItem from "./MainGroceryListItem";
-import { useParams } from "react-router-dom";
-import { GroceryListContext } from "../../context/GroceryList";
-import axios from "axios";
-import { baseUrl } from "../../utils/backEndUtils";
+import React, { useContext, useEffect, useState } from 'react';
+import styles from '../../pages/singleGroceryList/singleGroceryList.module.css';
+import MainGroceryListItem from './MainGroceryListItem';
+import { useParams } from 'react-router-dom';
+import { GroceryListContext } from '../../context/GroceryList';
+import axios from 'axios';
+import { baseUrl } from '../../utils/backEndUtils';
 
 function GroceryListRenderer() {
   const { listId } = useParams();
@@ -45,6 +45,7 @@ function GroceryListRenderer() {
                 removeItemFromList={removeItemFromList}
                 addItemToList={addItemToList}
                 product={item}
+                key={item.productId._id}
               />
             );
           })}

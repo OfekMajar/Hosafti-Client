@@ -10,7 +10,7 @@ function MainGroceryListItem({
   checkListItem,
 }) {
   return (
-    <div className={styles.MainGroceryListItem}>
+    <div  className={styles.MainGroceryListItem}>
       <div>
         <input
           onChange={() => {

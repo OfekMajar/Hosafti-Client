@@ -105,7 +105,7 @@ function SingleGroup() {
       </section>
       <div className={styles.listsContainer}>
         {groupLists.map((item) => {
-          return <GroupListCard groupList={item} />;
+          return <GroupListCard key={item._id} groupList={item} />;
         })}
       </div>
     </div>
