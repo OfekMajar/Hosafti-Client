@@ -1,7 +1,7 @@
-import React from "react";
-import styles from "../../pages/singleGroceryList/singleGroceryList.module.css";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faMinusCircle, faPlusCircle } from "@fortawesome/free-solid-svg-icons";
+import React from 'react';
+import styles from '../../pages/singleGroceryList/singleGroceryList.module.css';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faMinusCircle, faPlusCircle } from '@fortawesome/free-solid-svg-icons';
 
 function MainGroceryListItem({
   product,
@@ -13,7 +13,7 @@ function MainGroceryListItem({
     <div className={styles.MainGroceryListItem}>
       <div>
         <input
-          onClick={() => {
+          onChange={() => {
             checkListItem(product.productId._id);
           }}
           type="checkbox"
@@ -24,7 +24,8 @@ function MainGroceryListItem({
         <span
           onClick={() => {
             removeItemFromList(product.productId._id);
-          }}>
+          }}
+        >
           <FontAwesomeIcon
             icon={faMinusCircle}
             className={styles.removeFromList}
@@ -34,12 +35,14 @@ function MainGroceryListItem({
         <span
           onClick={() => {
             addItemToList(product.productId._id);
-          }}>
+          }}
+        >
           <FontAwesomeIcon icon={faPlusCircle} className={styles.addToList} />
         </span>
       </div>
       <p
-        className={product.checked ? styles.checkedItem : styles.uncheckedItem}>
+        className={product.checked ? styles.checkedItem : styles.uncheckedItem}
+      >
         {product.productId.title}
       </p>
       <img

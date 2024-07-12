@@ -81,6 +81,11 @@ export default function GroceryListProvider({ children }) {
         {
           groceryListId,
           productId,
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${accessToken}`,
+          },
         }
       );
       getGroceryListFromDb(groceryListId);
