@@ -10,23 +10,23 @@ function MyGroups() {
   const { user, getAccessToken } = useContext(UserContext);
   const [groups, setGroups] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [showMyGroups, setShowMyGroups] = useState('');
+
   const getUserGroups = async () => {
     if (user) {
       const token = await getAccessToken();
       try {
-        const res = await axios.get(`${baseUrl}/groups/myGroups/2`, {
+        const res = await axios.get(`${baseUrl}/groups/myGroups`, {
           headers: {
             Authorization: `Bearer ${token}`,
           },
         });
         const data = res.data;
         setGroups(data);
-        setLoading(false);
       } catch (error) {
         console.log(error);
+      } finally {
+        setLoading(false);
       }
-    } else {
     }
   };
   useEffect(() => {
@@ -53,7 +53,6 @@ function MyGroups() {
               <div className={styles.newGroupBtnBox}>
                 <Link to={'/myGroups/createGroup'}>
                   <button className={styles.newGroupBtn}>
-                    {' '}
                     לחץ כדי ליצור קבוצה חדשה{' '}
                   </button>
                 </Link>

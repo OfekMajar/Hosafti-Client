@@ -1,15 +1,14 @@
-import axios from "axios";
-import { useContext, useState } from "react";
-import { baseUrl } from "../../utils/backEndUtils";
-import CreateGroupForm from "../../components/CreateGroupForm";
-import { UserContext } from "../../context/User";
-import styles from "./createGroup.module.css";
+import axios from 'axios';
+import { useContext, useState } from 'react';
+import { baseUrl } from '../../utils/backEndUtils';
+import CreateGroupForm from '../../components/CreateGroupForm';
+import { UserContext } from '../../context/User';
+import styles from './createGroup.module.css';
 
 function CreateGroup() {
-  const { user } = useContext(UserContext);
+  const { globalUser, getAccessToken } = useContext(UserContext);
   const [formData, setFormData] = useState({});
   const [groupCreated, setGroupCreated] = useState({ isCreated: false });
-
   const changeHandler = (e) => {
     formData[e.target.name] = e.target.value;
     setFormData({ ...formData });
@@ -20,39 +19,34 @@ function CreateGroup() {
     e.preventDefault();
     groupCreated.isCreated = true;
     setGroupCreated({ ...groupCreated });
+    const token = await getAccessToken();
+    console.log(token);
     try {
-      const token = localStorage.getItem("hosafti_user_token");
-      const config = {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      };
-
       const res = await axios.post(
         `${baseUrl}/groups/createGroup`,
         { title: formData.title, purpose: formData.purpose },
-        config
+        { headers: { Authorization: `bearer ${token}` } }
       );
-      
+
       const data = res.data;
       groupCreated.groupId = data._id;
       setGroupCreated({ ...groupCreated });
     } catch (error) {
-      console.log(error);
+      console.error(error);
     }
   };
-
   const linkGenerator = async () => {
     try {
+      const accessToken = await getAccessToken();
       const res = await axios.post(
         `${baseUrl}/tokenManipulation/createLinkToken/${groupCreated.groupId}`,
         {
-          inviter: user.fullName,
-        }
+          inviter: globalUser?.fullName,
+        },
+        { headers: { Authorization: `bearer ${accessToken}` } }
       );
+
       const token = res.data;
-      console.log(token);
-      console.log(groupCreated);
       const newLink = `http://localhost:5173/joinGroup/${groupCreated.groupId}/${token}`;
       navigator.clipboard.writeText(newLink);
     } catch (error) {
@@ -71,7 +65,7 @@ function CreateGroup() {
       ) : (
         <CreateGroupForm
           styles={styles}
-          owner={user}
+          owner={globalUser}
           changeHandler={changeHandler}
           submitHandler={submitHandler}
         />

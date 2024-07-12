@@ -1,15 +1,18 @@
-import axios from "axios";
-import { createContext, useEffect, useState } from "react";
-import { baseUrl } from "../utils/backEndUtils";
+import axios from 'axios';
+import { createContext, useEffect, useState, useContext } from 'react';
+import { baseUrl } from '../utils/backEndUtils';
+import { UserContext } from './User';
 
 export const GroceryListContext = createContext({});
 
 export default function GroceryListProvider({ children }) {
   const [groceryList, setGroceryList] = useState([]);
-
+  const { accessToken } = useContext(UserContext);
   const getGroceryListFromDb = async (id) => {
     try {
-      const res = await axios.get(`${baseUrl}/groceryLists/groceryList/${id}`);
+      const res = await axios.get(`${baseUrl}/groceryLists/groceryList/${id}`, {
+        headers: { Authorization: `Bearer ${accessToken}` },
+      });
       const data = res.data;
       setGroceryList(data);
     } catch (error) {
@@ -18,18 +21,17 @@ export default function GroceryListProvider({ children }) {
   };
   //const { groceryListId, productId, action } = req.body;
   const addGoGroceryList = async (groceryListId, productId) => {
-    const token = localStorage.getItem("hosafti_user_token");
     try {
       const res = await axios.post(
         `${baseUrl}/groceryLists/updateMainList`,
         {
           groceryListId,
           productId,
-          action: "add",
+          action: 'add',
         },
         {
           headers: {
-            Authorization: `Bearer ${token}`,
+            Authorization: `Bearer ${accessToken}`,
           },
         }
       );
@@ -40,18 +42,17 @@ export default function GroceryListProvider({ children }) {
   };
 
   const removeFromGroceryList = async (groceryListId, productId) => {
-    const token = localStorage.getItem("hosafti_user_token");
     try {
       const res = await axios.post(
         `${baseUrl}/groceryLists/updateMainList`,
         {
           groceryListId,
           productId,
-          action: "remove",
+          action: 'remove',
         },
         {
           headers: {
-            Authorization: `Bearer ${token}`,
+            Authorization: `Bearer ${accessToken}`,
           },
         }
       );
@@ -80,6 +81,11 @@ export default function GroceryListProvider({ children }) {
         {
           groceryListId,
           productId,
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${accessToken}`,
+          },
         }
       );
       getGroceryListFromDb(groceryListId);

@@ -7,11 +7,13 @@ import logoImg from '../../assets/logoImg-removebg-preview.png';
 import defaultAvatar from '../../../public/images/default_avatar.png';
 
 function Header() {
-  const { globalUser, logOutHandler } = useContext(UserContext);
+  const { globalUser, logOutHandler, isLoadingUser } = useContext(UserContext);
   const nav = useNavigate();
   return (
     <header className={styles.header}>
-      {globalUser ? (
+      {isLoadingUser ? (
+        <p>טוען</p>
+      ) : globalUser ? (
         <section className={styles.userSection}>
           <img
             className={styles.profileImg}
