@@ -12,7 +12,7 @@ function Header() {
   return (
     <header className={styles.header}>
       {isLoadingUser ? (
-        <p>'טוען..'</p>
+        <p>טוען</p>
       ) : globalUser ? (
         <section className={styles.userSection}>
           <img
