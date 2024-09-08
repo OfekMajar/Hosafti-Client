@@ -1,7 +1,6 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Header from './components/header/Header';
 import Home from './pages/home/Home';
-import Auth from './pages/auth/Auth';
 import MyGroups from './pages/myGroups/MyGroups';
 import SingleGroup from './pages/singleGroup/SingleGroup';
 import SingleGroceryList from './pages/singleGroceryList/SingleGroceryList';
@@ -11,7 +10,6 @@ import CreateGroup from './pages/createGroup/CreateGroup';
 import CreateList from './pages/createList/CreateList';
 import GroupHistoryList from './pages/groupHistoryLists/GroupHistoryList';
 import UserResetPassword from './pages/userProfile/UserResetPassword';
-import ForgotPassword from './pages/auth/ForgotPassword';
 import { useContext } from 'react';
 import { UserContext } from './context/User';
 import Footer from './components/footer/Footer';
@@ -32,10 +30,6 @@ function App() {
               <>
                 <Route path="/" element={<Home />} />
                 <Route path="/auth" element={<Auth0Login />} />
-                <Route
-                  path="/auth/forgotPassword"
-                  element={<ForgotPassword />}
-                />
                 <Route path="/myGroups" element={<MyGroups />} />
                 <Route path="/myGroups/createGroup" element={<CreateGroup />} />
                 <Route path="/myGroups/group/:id" element={<SingleGroup />} />

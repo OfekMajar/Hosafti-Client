@@ -49,7 +49,7 @@
   width: 40%;
   transition: transform 0.3s ease-in-out;
   list-style: none;
-  gap: 16px;
+  justify-content: space-around;
 }
 
 .navbar li {
@@ -73,6 +73,9 @@ a {
   transform: scale(1.1);
 }
 
+.small-logo-img{
+  display: none;
+}
 .hamburger {
   display: none;
   cursor: pointer;
@@ -118,10 +121,13 @@ a {
     padding: 20px;
     box-shadow: -5px 0 10px rgba(0, 0, 0, 0.1);
     z-index: 2;
+    gap: 16px;
+    justify-content: flex-start;
   }
 
   .navbarLink {
     margin: 10px 0;
+    
   }
 
   .hamburger {
@@ -133,7 +139,16 @@ a {
     display: flex;
   }
 
-  .logoImg {
+  .logo-img {
     width: 100px;
+  }
+}
+
+@media (max-width: 450px){
+  .logo-img{
+    display: none;
+  }
+  .small-logo-img{
+    display: inline;
   }
 }

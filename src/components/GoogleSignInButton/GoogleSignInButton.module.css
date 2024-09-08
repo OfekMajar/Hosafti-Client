@@ -1,0 +1,25 @@
+.googleButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: white;
+  border: 1px solid #4285f4;
+  border-radius: 5px;
+  padding: 10px 20px;
+  font-size: 16px;
+  font-weight: bold;
+  color: #4285f4;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  width: 100%;
+  max-width: 300px;
+}
+
+.googleButton img {
+  width: 20px;
+  margin-right: 10px;
+}
+
+.googleButton:hover {
+  background-color: #f1f3f4;
+}

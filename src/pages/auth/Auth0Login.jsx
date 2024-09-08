@@ -2,7 +2,8 @@ import { useAuth0 } from '@auth0/auth0-react';
 import axios from 'axios';
 import { baseUrl } from '../../utils/backEndUtils';
 import { useEffect } from 'react';
-
+import Login from '../../components/authentication/Login';
+import styles from "./Auth.module.css"
 function Auth0Login() {
   const {
     loginWithPopup,
@@ -35,9 +36,9 @@ function Auth0Login() {
     }
   }, [isAuthenticated, user]);
   return (
-    <div>
-      <button onClick={loginWithPopup}>log in</button>
-      <button onClick={logout}>logout</button>
+    <div className={styles['auth-page-container']}>
+     
+      <Login />
     </div>
   );
 }

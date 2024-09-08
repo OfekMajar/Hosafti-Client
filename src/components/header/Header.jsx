@@ -3,8 +3,9 @@ import Navbar from './Navbar';
 import styles from './header.module.css';
 import { useNavigate } from 'react-router-dom';
 import { UserContext } from '../../context/User';
-import logoImg from '../../assets/logoImg-removebg-preview.png';
 import defaultAvatar from '../../../public/images/default_avatar.png';
+import logoImg from '../../assets/logoImg-removebg-preview.png';
+import smallLogoImg from '../../assets/logoIcon.png';
 
 function Header() {
   const { globalUser, logOutHandler, isLoadingUser } = useContext(UserContext);
@@ -21,8 +22,6 @@ function Header() {
 
   return (
     <header className={styles.header}>
-      <img className={styles.logoImg} src={logoImg} alt="logo img" />
-
       {isLoadingUser ? (
         <p>טוען</p>
       ) : globalUser ? (
@@ -63,6 +62,8 @@ function Header() {
       )}
 
       <Navbar styles={styles} isMenuOpen={isMenuOpen} closeMenu={closeMenu} />
+      <img className={styles['logo-img']} src={logoImg} alt="logo img" />
+      <img className={styles['small-logo-img']} src={smallLogoImg} alt="shopping cart logo image" />
     </header>
   );
 }

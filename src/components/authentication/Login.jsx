@@ -1,9 +1,14 @@
-import React, { useContext, useState } from "react";
-import { UserContext } from "../../context/User";
-import { useNavigate } from "react-router-dom";
+import React, { useContext, useState } from 'react';
+import { UserContext } from '../../context/User';
+import { useNavigate } from 'react-router-dom';
+import styles from './Login.module.css';
+import GoogleSignInButton from '../GoogleSignInButton/GoogleSignInButton';
+import { useAuth0 } from '@auth0/auth0-react';
 
-function Login({ sumbitHandler, changeHandler, toggleMode, styles,error }) {
-  const nav = useNavigate();
+function Login() {
+  const {
+    loginWithPopup,
+  } = useAuth0();
   return (
     <div className={styles.logInModeContainer}>
       <div className={styles.box}>
@@ -11,45 +16,8 @@ function Login({ sumbitHandler, changeHandler, toggleMode, styles,error }) {
           <i className={`fa-solid fa-lock ${styles.lockIcon}`}></i>
         </div>
         <h1>התחברות</h1>
-        <form onSubmit={sumbitHandler}>
-          <div className={styles.authLableAndInput}>
-            <label htmlFor="userEmailInput">אימייל: {error=="Email or password are incorrect"&& <span className={styles.loginErrorText}>אימייל או סיסמה שגויים</span>}</label>
-            <input
-              className={styles.authInput}
-              onChange={changeHandler}
-              type="email"
-              name="email"
-              id="userEmailInput"
-              required
-            />
-          </div>
-          <div className={styles.authLableAndInput}>
-            <label htmlFor="userPasswordInput">סיסמה:</label>
-            <input
-              className={styles.authInput}
-              onChange={changeHandler}
-              type="password"
-              name="password"
-              id="userPasswordInput"
-              required
-            />
-          </div>
-          <button className={styles.authSumbitBtn} type="submit">
-            התחברות
-          </button>
-        </form>
-        <div className={styles.bottonFormBtns}>
-          <p
-            className={styles.forgotPassword}
-            onClick={() => {
-              nav("/auth/forgotpassword");
-            }}>
-            שכחת סיסמא? לחץ כאן
-          </p>
-          <p className={styles.switchSignUpLogInBtn} onClick={toggleMode}>
-            אין לך חשבון? לחץ כאן
-          </p>
-        </div>
+
+        <GoogleSignInButton onClick={loginWithPopup} />
       </div>
     </div>
   );

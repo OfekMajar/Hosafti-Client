@@ -136,18 +136,6 @@
     height: 40%; /* Decreased height for mobile */
     font-size: 18px; /* Decreased font size for mobile */
   }
-  .authSumbitBtn {
-    margin-top: 15px; /* Decreased margin for mobile */
-    font-size: 24px; /* Decreased font size for mobile */
-    text-align: center;
-    background-color: #1976d2;
-    color: #fff;
-    font-weight: 500;
-  }
-  .switchSignUpLogInBtn {
-    cursor: pointer;
-    align-self: flex-end;
-    color: #1976d2;
-    font-size: 14px; /* Decreased font size for mobile */
-  }
+ 
+  
 }
