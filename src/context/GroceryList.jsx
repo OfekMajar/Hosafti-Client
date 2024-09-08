@@ -91,6 +91,25 @@ export default function GroceryListProvider({ children }) {
       getGroceryListFromDb(groceryListId);
     } catch (error) {}
   };
+
+  const changeGroceryListTitle = async (groceryListId, title) => {
+    try {
+      const res = await axios.patch(
+        `${baseUrl}/groceryLists/updateGroceryList/${groceryListId}`,
+        {
+          title: title,
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${accessToken}`,
+          },
+        }
+      );
+      getGroceryListFromDb(groceryListId);
+    } catch (error) {
+      console.log(error);
+    }
+  };
   const shared = {
     groceryList,
     setGroceryList,
@@ -98,6 +117,7 @@ export default function GroceryListProvider({ children }) {
     addGoGroceryList,
     removeFromGroceryList,
     checkOffGroceryItem,
+    changeGroceryListTitle,
   };
   return (
     <GroceryListContext.Provider value={shared}>

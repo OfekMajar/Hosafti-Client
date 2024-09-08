@@ -51,6 +51,7 @@
   cursor: pointer;
   /* transform: scale(1); */
   transition: 0.7s;
+  background-color: white;
 }
 .groupCard:hover {
   transform: scale(1.1);

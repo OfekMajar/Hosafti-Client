@@ -73,7 +73,7 @@ a {
   transform: scale(1.1);
 }
 
-.small-logo-img{
+.small-logo-img {
   display: none;
 }
 .hamburger {
@@ -127,7 +127,9 @@ a {
 
   .navbarLink {
     margin: 10px 0;
-    
+    border-top: 1px solid black;
+    border-bottom: 1px solid black;
+    padding: 2px;
   }
 
   .hamburger {
@@ -144,11 +146,11 @@ a {
   }
 }
 
-@media (max-width: 450px){
-  .logo-img{
+@media (max-width: 450px) {
+  .logo-img {
     display: none;
   }
-  .small-logo-img{
+  .small-logo-img {
     display: inline;
   }
 }

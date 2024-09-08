@@ -5,7 +5,8 @@ import { useParams } from 'react-router-dom';
 import { GroceryListContext } from '../../context/GroceryList';
 import axios from 'axios';
 import { baseUrl } from '../../utils/backEndUtils';
-
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faPen, faCheck } from '@fortawesome/free-solid-svg-icons';
 function GroceryListRenderer() {
   const { listId } = useParams();
   // const [mainListRender, setMainListRender] = useState([]);
@@ -15,8 +16,10 @@ function GroceryListRenderer() {
     checkOffGroceryItem,
     removeFromGroceryList,
     getGroceryListFromDb,
+    changeGroceryListTitle,
   } = useContext(GroceryListContext);
-
+  const [toggleNameChanger, setToggleNameChanger] = useState(false);
+  const [newTitle, setNewTitle] = useState(groceryList.title);
   useEffect(() => {
     getGroceryListFromDb(listId);
   }, []);
@@ -31,11 +34,40 @@ function GroceryListRenderer() {
   const checkListItem = (_id) => {
     checkOffGroceryItem(listId, _id);
   };
+
+  const handleNewTitleInput = (e) => {
+    console.log(e.target.value);
+
+    setNewTitle(e.target.value);
+  };
+
+  const handleNameChanger = async () => {
+    await changeGroceryListTitle(listId, newTitle);
+    setToggleNameChanger(false);
+  };
   return (
     <div className={styles.leftContainer}>
       <div className={styles.theList}>
         <div className={styles.listTitle}>
-          <h2>{groceryList.title}</h2>
+          {!toggleNameChanger ? (
+            <>
+              <h2>{groceryList.title}</h2>
+              <FontAwesomeIcon
+                onClick={() => {
+                  setToggleNameChanger(true);
+                }}
+                icon={faPen}
+              ></FontAwesomeIcon>
+            </>
+          ) : (
+            <>
+              <input onChange={handleNewTitleInput} value={newTitle} />
+              <FontAwesomeIcon
+                onClick={handleNameChanger}
+                icon={faCheck}
+              ></FontAwesomeIcon>
+            </>
+          )}
         </div>
         <div className={styles.mainGroceryListContainor}>
           {groceryList?.mainList?.map((item) => {
