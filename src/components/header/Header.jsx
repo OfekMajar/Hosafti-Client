@@ -63,7 +63,11 @@ function Header() {
 
       <Navbar styles={styles} isMenuOpen={isMenuOpen} closeMenu={closeMenu} />
       <img className={styles['logo-img']} src={logoImg} alt="logo img" />
-      <img className={styles['small-logo-img']} src={smallLogoImg} alt="shopping cart logo image" />
+      <img
+        className={styles['small-logo-img']}
+        src={smallLogoImg}
+        alt="shopping cart logo image"
+      />
     </header>
   );
 }
