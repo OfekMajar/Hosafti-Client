@@ -8,6 +8,7 @@
   padding: 0 8px;
   background-color: var(--bgColor);
 }
+
 .userSection {
   display: flex;
   justify-content: space-around;
@@ -15,6 +16,7 @@
   gap: 8px;
 }
 /*^  user and btn*/
+
 .authNavBtn {
   background-color: var(--loginBlue);
   color: #ffffff;
@@ -24,43 +26,114 @@
   -webkit-box-shadow: -1px 3px 13px -1px rgba(0, 0, 0, 0.16);
   -moz-box-shadow: -1px 3px 13px -1px rgba(0, 0, 0, 0.16);
 }
+
 .authNavBtn :active {
   box-shadow: none;
   -webkit-box-shadow: none;
   -moz-box-shadow: none;
 }
+
 .authNavBtn:hover {
   cursor: pointer;
 }
-.profileImg{
+
+.profileImg {
   width: 40px;
   height: 40px;
   border-radius: 50%;
 }
 /*^ navbar */
+
 .navbar {
   display: flex;
   width: 40%;
-  justify-content: space-evenly;
+  transition: transform 0.3s ease-in-out;
+  list-style: none;
+  gap: 16px;
 }
+
 .navbar li {
-  list-style-type: none;
   display: flex;
   justify-content: center;
   align-items: center;
 }
+
 a {
   text-decoration: none;
 }
+
 .navbar li a {
   color: var(--loginBlue);
   font-size: 20px;
   font-weight: 550;
   cursor: pointer;
 }
+
 .navbar li a:hover {
   transform: scale(1.1);
 }
-/*^ */
-.logoImg {
+
+.hamburger {
+  display: none;
+  cursor: pointer;
+  font-size: 24px;
+}
+
+.overlay {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 1;
+}
+
+.overlayActive {
+  display: block;
+}
+
+.overlayActive {
+  display: block;
+}
+.navbarClosed {
+  transform: translateX(100%);
+}
+
+.navbarOpen {
+  transform: translateX(0);
+}
+
+@media (max-width: 768px) {
+  .navbar {
+    display: none; /* Hide the navbar by default */
+    flex-direction: column;
+    position: fixed;
+    top: 0;
+    right: 0;
+    height: 100%;
+    width: 250px;
+    background-color: #fff;
+    padding: 20px;
+    box-shadow: -5px 0 10px rgba(0, 0, 0, 0.1);
+    z-index: 2;
+  }
+
+  .navbarLink {
+    margin: 10px 0;
+  }
+
+  .hamburger {
+    display: block;
+    cursor: pointer;
+  }
+
+  .showMenu {
+    display: flex;
+  }
+
+  .logoImg {
+    width: 100px;
+  }
 }
