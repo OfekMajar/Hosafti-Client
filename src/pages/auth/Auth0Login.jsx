@@ -3,15 +3,9 @@ import axios from 'axios';
 import { baseUrl } from '../../utils/backEndUtils';
 import { useEffect } from 'react';
 import Login from '../../components/authentication/Login';
-import styles from "./Auth.module.css"
+import styles from './Auth.module.css';
 function Auth0Login() {
-  const {
-    loginWithPopup,
-    getAccessTokenSilently,
-    user,
-    logout,
-    isAuthenticated,
-  } = useAuth0();
+  const { getAccessTokenSilently, user, isAuthenticated } = useAuth0();
   const registerUser = async () => {
     try {
       let token = await getAccessTokenSilently();
@@ -24,7 +18,6 @@ function Auth0Login() {
           },
         }
       );
-      console.log('User registered:', res.data);
     } catch (error) {
       console.error('Error during user registration:', error);
     }
@@ -37,7 +30,6 @@ function Auth0Login() {
   }, [isAuthenticated, user]);
   return (
     <div className={styles['auth-page-container']}>
-     
       <Login />
     </div>
   );

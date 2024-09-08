@@ -8,7 +8,6 @@ function LinkAuthenticator() {
   const { globalUser, getAccessToken } = useContext(UserContext);
   const [group, setGroup] = useState({});
   const { id, token } = useParams();
-  console.log(id);
   const getGroup = async () => {
     const accessToken = await getAccessToken();
     try {

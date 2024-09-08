@@ -3,8 +3,6 @@ import styles from '../../pages/singleGroceryList/singleGroceryList.module.css';
 import MainGroceryListItem from './MainGroceryListItem';
 import { useParams } from 'react-router-dom';
 import { GroceryListContext } from '../../context/GroceryList';
-import axios from 'axios';
-import { baseUrl } from '../../utils/backEndUtils';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPen, faCheck } from '@fortawesome/free-solid-svg-icons';
 function GroceryListRenderer() {
@@ -36,8 +34,6 @@ function GroceryListRenderer() {
   };
 
   const handleNewTitleInput = (e) => {
-    console.log(e.target.value);
-
     setNewTitle(e.target.value);
   };
 
@@ -56,6 +52,7 @@ function GroceryListRenderer() {
                 onClick={() => {
                   setToggleNameChanger(true);
                 }}
+                style={{ cursor: 'pointer' }}
                 icon={faPen}
               ></FontAwesomeIcon>
             </>
@@ -65,11 +62,12 @@ function GroceryListRenderer() {
               <FontAwesomeIcon
                 onClick={handleNameChanger}
                 icon={faCheck}
+                style={{ cursor: 'pointer' }}
               ></FontAwesomeIcon>
             </>
           )}
         </div>
-        <div className={styles.mainGroceryListContainor}>
+        <div className={styles.mainGroceryListContainer}>
           {groceryList?.mainList?.map((item) => {
             return (
               <MainGroceryListItem

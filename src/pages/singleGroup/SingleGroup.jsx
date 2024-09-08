@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from 'react';
 import styles from './singleGroup.module.css';
-import { Link, useFetcher, useParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import { baseInviteUrl, baseUrl } from '../../utils/backEndUtils';
 import GroupListCard from '../../components/GroupListCard';
 import { UserContext } from '../../context/User';
